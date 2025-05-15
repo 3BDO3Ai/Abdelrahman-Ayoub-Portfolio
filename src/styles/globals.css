@@ -1,0 +1,1306 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Roboto:wght@300;400;500;700&display=swap');
+
+:root {
+  /* Common variables for both themes */
+  --primary: #6366f1; /* Indigo primary */
+  --primary-dark: #4f46e5; /* Darker indigo */
+  --secondary: #f59e0b; /* Amber accent */
+  --tertiary: #ec4899; /* Pink accent */
+  --border-radius: 8px;
+  --section-padding: 16px;
+  --box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+/* Dark theme (default) */
+:root, [data-theme="dark"] {
+  --background: #0f172a; /* Slate 900 - modern deep background */
+  --background-lighter: #1e293b; /* Slate 800 - lighter dark background */
+  --background-gradient: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+  --text: #f8fafc; /* Slate 50 - nearly white text */
+  --text-light: #cbd5e1; /* Slate 300 - light text */
+  --accent: #f59e0b; /* Amber 500 - vibrant accent */
+  --card-background: rgba(30, 41, 59, 0.6); /* Slate 800 with transparency */
+  --card-backdrop-filter: blur(8px);
+  --border-color: rgba(99, 102, 241, 0.1);
+  --glass-effect: rgba(255, 255, 255, 0.05);
+}
+
+/* Light theme */
+[data-theme="light"] {
+  --background: #f8fafc; /* Slate 50 - clean white background */
+  --background-lighter: #f1f5f9; /* Slate 100 - subtle light background */
+  --background-gradient: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+  --text: #0f172a; /* Slate 900 - deep text color */
+  --text-light: #334155; /* Slate 700 - medium text */
+  --accent: #4f46e5; /* Indigo 600 - vibrant accent */
+  --card-background: rgba(255, 255, 255, 0.7);
+  --card-backdrop-filter: blur(12px);
+  --box-shadow: 0 10px 30px rgba(15, 23, 42, 0.05);
+  --border-color: rgba(99, 102, 241, 0.1);
+  --glass-effect: rgba(255, 255, 255, 0.5);
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* Custom Scrollbar Styling */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(58, 110, 165, 0.05);
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(58, 110, 165, 0.3);
+  border-radius: 10px;
+  transition: all 0.3s ease;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(58, 110, 165, 0.5);
+}
+
+/* Firefox scrollbar */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(58, 110, 165, 0.3) rgba(58, 110, 165, 0.05);
+}
+
+html,
+body {
+  font-family: 'Inter', 'Roboto', -apple-system, BlinkMacSystemFont, 'Segoe UI', Oxygen,
+    Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  background: var(--background-gradient);
+  color: var(--text);
+  scroll-behavior: smooth;
+  font-size: 15px;
+  line-height: 1.6;
+  letter-spacing: 0.01em;
+  min-height: 100vh;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button {
+  cursor: pointer;
+  border: none;
+  outline: none;
+  background: none;
+  font-family: inherit;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+h1 {
+  font-size: 1.8rem;
+}
+
+h2 {
+  font-size: 1.2rem;
+  font-weight: 600;
+}
+
+h3 {
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+p, li {
+  font-size: 0.9rem;
+  font-weight: 400;
+}
+
+.container {
+  width: 100%;
+  padding: 0 0.75rem;
+}
+
+.section {
+  padding: var(--section-padding);
+  border-radius: var(--border-radius);
+  background-color: var(--card-background);
+  backdrop-filter: var(--card-backdrop-filter);
+  -webkit-backdrop-filter: var(--card-backdrop-filter);
+  margin-bottom: 0.75rem;
+  box-shadow: var(--box-shadow);
+  height: auto;
+  border: 1px solid var(--border-color);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  will-change: transform, opacity, filter;
+  transform: translate3d(0, 0, 0);
+  backface-visibility: hidden;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+}
+.section:hover {
+  box-shadow: 0 15px 35px rgba(99, 102, 241, 0.15), 0 5px 15px rgba(0, 0, 0, 0.05);
+  transform: scale(1.01) translate3d(0, -3px, 0);
+  z-index: 2;
+  border-color: rgba(99, 102, 241, 0.2);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.section:hover::before {
+  opacity: 1;
+}
+
+.section.focused {
+  z-index: 10;
+  box-shadow: 0 25px 50px rgba(99, 102, 241, 0.2), 0 10px 20px rgba(0, 0, 0, 0.1);
+  transform: translate3d(0, 0, 0);
+  background: var(--background-lighter);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 2px solid var(--accent);
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(1.1);
+  width: 85%;
+  max-width: 850px;
+  height: 85vh;
+  max-height: 850px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  transition: all 0.3s cubic-bezier(0.2, 0, 0.2, 1);
+  will-change: transform, opacity;
+}
+
+.section-active {
+  background-color: var(--card-background);
+  border: 2px solid var(--accent);
+  position: relative;
+  z-index: 10;
+}
+
+.focused-mode .section.focused .scrollable-container {
+  max-height: calc(80vh - 100px) !important;
+  min-height: calc(80vh - 100px) !important;
+  height: auto !important;
+  overflow-y: auto;
+}
+
+.focused-mode .section.minimized {
+  opacity: 0.3;
+  filter: blur(2px) grayscale(0.4);
+  transform: scale(0.94);
+  pointer-events: none;
+}
+
+.focused-mode .content-area-focused {
+  width: 100vw;
+  max-width: 100vw;
+}
+
+.focused-mode .fit-content-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-auto-rows: 1fr;
+  gap: 1.2rem;
+  width: 100%;
+  height: 100%;
+  position: relative;
+  max-width: 100%;
+}
+
+.focus-btn {
+  position: absolute;
+  top: 10px;
+  right: 14px;
+  background: var(--accent);
+  color: #fff;
+  border: none;
+  border-radius: 999px;
+  padding: 0.3rem 1.1rem;
+  font-size: 0.85rem;
+  font-weight: 600;
+  box-shadow: 0 2px 8px rgba(58,110,165,0.18);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.18s;
+  z-index: 20;
+}
+.section:hover .focus-btn {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.section.minimized {
+  opacity: 0.5;
+  filter: blur(1px);
+  transform: scale(0.98) translate3d(0, 0, 0);
+  pointer-events: none;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.section-title {
+  font-size: 1.1rem;
+  margin-bottom: 0.5rem;
+  color: var(--accent);
+  position: relative;
+  display: inline-block;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+
+.section-title::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 30px;
+  height: 3px;
+  background: linear-gradient(90deg, var(--accent), var(--tertiary));
+  border-radius: 3px;
+}
+
+.grid {
+  display: grid;
+  gap: 0.75rem;
+}
+
+.grid-2 {
+  grid-template-columns: 1fr 1fr;
+}
+
+@media (max-width: 768px) {
+  .grid-2 {
+    grid-template-columns: 1fr;
+  }
+}
+
+.skill-tag {
+  display: inline-block;
+  background-color: rgba(99, 102, 241, 0.08);
+  color: var(--text);
+  padding: 0.15rem 0.6rem;
+  border-radius: 999px;
+  margin-right: 0.4rem;
+  margin-bottom: 0.4rem;
+  font-size: 0.8rem;
+  font-weight: 500;
+  border: 1px solid rgba(99, 102, 241, 0.15);
+  transition: all 0.2s ease;
+}
+
+.skill-tag:hover {
+  background-color: rgba(99, 102, 241, 0.15);
+  transform: translateY(-1px);
+  box-shadow: 0 3px 8px rgba(99, 102, 241, 0.1);
+}
+
+.button {
+  background-color: var(--primary);
+  color: white;
+  padding: 0.6rem 1.2rem;
+  border-radius: 0.4rem;
+  font-weight: 600;
+  transition: all 0.2s;
+  font-size: 0.85rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  box-shadow: 0 4px 12px rgba(99, 102, 241, 0.2);
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+}
+
+.button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(45deg, var(--primary), var(--primary-dark));
+  z-index: -1;
+  transition: opacity 0.3s ease;
+}
+
+.button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 18px rgba(99, 102, 241, 0.25);
+}
+
+.button:active {
+  transform: translateY(1px);
+  box-shadow: 0 2px 6px rgba(99, 102, 241, 0.2);
+}
+
+.icon-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.2rem;
+  height: 2.2rem;
+  border-radius: 50%;
+  background-color: rgba(99, 102, 241, 0.08);
+  color: var(--text);
+  transition: all 0.2s;
+  font-size: 0.9rem;
+  border: 1px solid rgba(99, 102, 241, 0.15);
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.03);
+  position: relative;
+  overflow: hidden;
+}
+
+.icon-button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(circle at center, var(--glass-effect), transparent 70%);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+}
+
+.icon-button:hover {
+  background-color: var(--primary);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 15px rgba(99, 102, 241, 0.15);
+  color: white;
+}
+
+.icon-button:hover::before {
+  opacity: 0.6;
+}
+
+.icon-button:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 5px rgba(99, 102, 241, 0.1);
+}
+
+.theme-toggle {
+  position: fixed;
+  top: 0.75rem;
+  right: 0.75rem;
+  z-index: 100;
+}
+
+.card {
+  padding: 0.75rem;
+  border-radius: var(--border-radius);
+  background-color: var(--card-background);
+  transition: transform 0.3s ease;
+  border: 1px solid var(--border-color);
+}
+
+.card:hover {
+  transform: translateY(-3px);
+}
+
+.fade-in {
+  animation: fadeIn 0.5s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(15px);
+    filter: blur(5px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+    filter: blur(0);
+  }
+}
+
+/* Scrollbar styles */
+.scrollable-container {
+  position: relative;
+  overflow-y: auto;
+  scrollbar-width: thin;
+  scrollbar-color: var(--accent) var(--card-background);
+  padding-right: 0.5rem;
+  /* Hide default ugly scrollbars on Windows */
+  -ms-overflow-style: none;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  will-change: transform, scroll-position;
+  transform: translate3d(0, 0, 0);
+  backface-visibility: hidden;
+  -webkit-overflow-scrolling: touch;
+}
+.scrollable-container::-webkit-scrollbar {
+  width: 8px;
+  background: transparent;
+}
+.scrollable-container::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, var(--accent) 60%, var(--tertiary) 100%);
+  border-radius: 8px;
+  min-height: 24px;
+  border: 2px solid transparent;
+  background-clip: padding-box;
+}
+.scrollable-container::-webkit-scrollbar-track {
+  background: transparent;
+}
+.scrollable-container:hover::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, var(--tertiary) 60%, var(--accent) 100%);
+}
+
+/* Hide scrollbars on Windows when not scrolling */
+.scrollable-container {
+  scrollbar-gutter: stable both-edges;
+}
+
+.scrollable-container::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 5px;
+  height: 20px;
+  background: linear-gradient(to bottom, transparent, var(--card-background));
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.scrollable-container.has-overflow::after {
+  opacity: 1;
+}
+
+.scroll-indicator {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 32px;
+  background: linear-gradient(to top, 
+    var(--card-background) 20%,
+    rgba(var(--card-background-rgb), 0.8) 60%,
+    transparent 100%
+  );
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: var(--accent);
+  opacity: 0;
+  transform: translateY(100%);
+  transition: all 0.2s ease;
+  pointer-events: none;
+  z-index: 10;
+}
+
+.scroll-indicator.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.scroll-indicator svg {
+  animation: bounceUpDown 1.5s ease-in-out infinite;
+  font-size: 1.2rem;
+  opacity: 0.9;
+}
+
+@keyframes bounceUpDown {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-4px); }
+}
+
+/* Apply scroll indicators to About and Hobbies sections */
+#about .scrollable-container,
+#hobbies .scrollable-container {
+  min-height: 90px;
+  max-height: 100%;
+  height: auto;
+  overflow-y: auto;
+  padding-bottom: 32px;
+  position: relative;
+}
+
+/* --- PROJECTS & EDUCATION SCROLLABLE HEIGHTS --- */
+#projects .scrollable-container,
+#education .scrollable-container {
+  min-height: 110px;
+  max-height: 180px;
+  height: auto;
+  overflow-y: auto;
+  padding-bottom: 28px; /* Space for indicator */
+}
+@media (max-width: 900px) {
+  #projects .scrollable-container,
+  #education .scrollable-container {
+    max-height: 220px;
+  }
+}
+@media (max-width: 700px) {
+  #projects .scrollable-container,
+  #education .scrollable-container {
+    max-height: 300px;
+  }
+}
+
+/* --- GENERAL POLISH FOR ALL SCROLLABLE SECTIONS --- */
+#skills .scrollable-container,
+#experience .scrollable-container,
+#hobbies .scrollable-container {
+  min-height: 90px;
+  max-height: 180px;
+  height: auto;
+  overflow-y: auto;
+  padding-bottom: 28px;
+  transition: min-height 0.4s ease, max-height 0.4s ease;
+}
+
+/* Responsive styles */
+@media (max-width: 768px) {
+  main {
+    grid-template-rows: auto 1fr;
+    padding: 0.5rem;
+  }
+
+  .section {
+    padding: 0.5rem;
+    margin-bottom: 1rem;
+  }
+
+  .section-title {
+    font-size: 1.2rem;
+  }
+
+  .container {
+    padding: 0;
+  }
+
+  .grid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+}
+
+@media (min-width: 769px) and (max-width: 1024px) {
+  main {
+    padding: 1rem;
+  }
+
+  .section {
+    padding: 1rem;
+  }
+
+  .grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+  }
+}
+
+@media (min-width: 1025px) {
+  main {
+    padding: 2rem;
+  }
+
+  .grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+  }
+}
+
+/* Responsive sidebar + grid layout */
+.main-responsive-layout {
+  display: flex;
+  min-height: 100vh;
+  width: 100vw;
+  background: var(--background);
+}
+
+.sidebar {
+  flex: 0 0 320px;
+  max-width: 340px;
+  min-width: 260px;
+  background: var(--background-lighter);
+  box-shadow: 2px 0 8px rgba(0,0,0,0.04);
+  display: flex;
+  flex-direction: column;
+  z-index: 2;
+}
+
+.content-area {
+  flex: 1 1 0%;
+  overflow-y: auto;
+  padding: 2.5rem 2rem;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+}
+
+.content-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(320px, 1fr));
+  gap: 2rem;
+  width: 100%;
+  max-width: 1100px;
+}
+
+@media (max-width: 1100px) {
+  .content-grid {
+    grid-template-columns: 1fr;
+    gap: 1.2rem;
+  }
+  .content-area {
+    padding: 1.2rem 0.5rem;
+  }
+  .sidebar {
+    min-width: 0;
+    max-width: 100vw;
+    flex-basis: 100vw;
+  }
+}
+
+@media (max-width: 700px) {
+  .main-responsive-layout {
+    flex-direction: column;
+  }
+  .sidebar {
+    width: 100vw;
+    max-width: 100vw;
+    min-width: 0;
+    box-shadow: none;
+    padding: 0.5rem 0.2rem;
+  }
+  .content-area {
+    padding: 0.5rem 0.1rem;
+  }
+  .content-grid {
+    grid-template-columns: 1fr;
+    gap: 0.7rem;
+    max-width: 100vw;
+  }
+}
+
+/* Compact header and section titles */
+header.section {
+  padding: 1rem 0.7rem 1.2rem 0.7rem !important;
+}
+
+@media (max-width: 700px) {
+  header.section {
+    padding: 0.7rem 0.2rem 1rem 0.2rem !important;
+  }
+}
+
+/* Fit all boxes into the viewport for desktop */
+.fit-screen-layout {
+  min-height: 100vh;
+  height: 100vh;
+  overflow: hidden;
+}
+.fit-content-area {
+  height: 100vh;
+  overflow: hidden;
+  display: flex;
+  align-items: stretch;
+  justify-content: center;
+}
+.fit-content-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(4, auto);
+  gap: 1.2rem;
+  width: 100%;
+  height: 100%;
+  max-width: 1400px;
+  grid-template-areas:
+    "about about skills"
+    "about about experience"
+    "education projects hobbies"
+    "achievements achievements achievements";
+  position: relative;
+}
+
+/* Assign grid areas to sections */
+#about { grid-area: about; }
+#skills { grid-area: skills; }
+#experience { grid-area: experience; }
+#education { grid-area: education; }
+#projects { grid-area: projects; }
+#hobbies { grid-area: hobbies; }
+#achievements { grid-area: achievements; }
+
+/* Make sure sections maintain consistent sizes when swapping positions */
+.section {
+  min-height: 0;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.section.section-active {
+  border: 2px solid var(--accent);
+  z-index: 5;
+}
+
+/* Style adjustments for content area when swapping positions */
+.scrollable-container {
+  flex: 1;
+  overflow-y: auto;
+  padding-right: 0.5rem;
+  transition: all 0.3s ease;
+}
+
+/* Media queries for responsive layout */
+@media (max-width: 1100px) {
+  .fit-content-grid {
+    grid-template-columns: repeat(2, minmax(280px, 1fr));
+    grid-template-areas:
+      "about about"
+      "skills experience"
+      "education projects"
+      "achievements hobbies";
+    gap: 1.2rem;
+    height: auto;
+    min-height: 100vh;
+  }
+  
+  .fit-content-area {
+    height: auto;
+    overflow: visible;
+    padding: 1rem;
+  }
+
+  .section {
+    min-height: 180px;
+  }
+}
+
+@media (max-width: 900px) {
+  .fit-content-grid {
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      "about"
+      "skills"
+      "experience"
+      "education"
+      "projects"
+      "hobbies";
+    gap: 1rem;
+    padding: 0.5rem;
+  }
+
+  .section {
+    min-height: 160px !important;
+    height: auto !important;
+  }
+
+  #hobbies.section {
+    min-height: 160px;
+  }
+}
+
+@media (max-width: 700px) {
+  .fit-content-grid {
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      "about"
+      "skills"
+      "experience"
+      "education"
+      "projects"
+      "hobbies";
+    gap: 0.7rem;
+    max-width: 100vw;
+  }
+  #about.section {
+    min-height: 200px;
+  }
+  #hobbies.section {
+    min-height: 120px;
+  }
+}
+
+/* Skills box: fixed height, scrolls internally if needed */
+#skills.section > div {
+  flex: 1 1 0;
+  min-height: 0;
+}
+#skills .scrollable-container {
+  height: 100% !important;
+  max-height: 100% !important;
+  overflow-y: auto;
+}
+
+/* Responsive: stack vertically on small screens */
+@media (max-width: 900px) {
+  .fit-content-grid {
+    grid-template-columns: 1fr;
+    grid-template-rows: none;
+    height: auto;
+  }
+  .fit-content-area {
+    height: auto;
+    min-height: 100vh;
+    overflow: auto;
+  }
+  .fit-screen-layout {
+    height: auto;
+    min-height: 100vh;
+    overflow: auto;
+  }
+  .fit-content-grid > .section {
+    height: auto;
+    min-height: 220px;
+  }
+}
+
+/* Added responsive styles for mobile devices */
+/* Mobile Navigation Styles */
+.mobile-nav-container {
+  display: none;
+}
+
+@media (max-width: 1024px) {
+  .mobile-nav-container {
+    display: block;
+  }
+}
+
+.mobile-nav-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.5rem;
+}
+
+.mobile-nav-toggle,
+.theme-toggle-mobile,
+.mobile-nav-close {
+  background: none;
+  border: none;
+  color: var(--text);
+  cursor: pointer;
+  padding: 0.5rem;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  transition: all 0.2s ease;
+}
+
+.mobile-nav-toggle:hover,
+.theme-toggle-mobile:hover,
+.mobile-nav-close:hover {
+  background-color: rgba(16, 185, 129, 0.1);
+}
+
+.mobile-nav-toggle:active,
+.theme-toggle-mobile:active,
+.mobile-nav-close:active {
+  transform: scale(0.95);
+  background-color: rgba(16, 185, 129, 0.2);
+}
+
+.mobile-nav-menu {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 80%;
+  max-width: 300px;
+  height: 100vh;
+  background-color: var(--background-lighter);
+  z-index: 1000;
+  padding: 1rem;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+  display: flex;
+  flex-direction: column;
+}
+
+.mobile-nav-menu-header {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 1rem;
+}
+
+/* Mobile personal info styles */
+.mobile-personal-info {
+  padding: 1rem 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.mobile-personal-info h1 {
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: var(--accent);
+  margin-bottom: 0.3rem;
+}
+
+.mobile-personal-info h2 {
+  font-size: 1rem;
+  font-weight: 500;
+  color: var(--text);
+  margin-bottom: 0.8rem;
+}
+
+.mobile-contact-info {
+  margin-bottom: 1rem;
+}
+
+.mobile-contact-item {
+  display: flex;
+  align-items: center;
+  margin-bottom: 0.5rem;
+  font-size: 0.85rem;
+}
+
+.mobile-contact-item > *:first-child {
+  color: var(--accent);
+  margin-right: 0.8rem;
+  font-size: 1rem;
+  min-width: 20px;
+}
+
+.mobile-social-links {
+  display: flex;
+  gap: 0.8rem;
+  margin-top: 0.8rem;
+}
+
+.mobile-social-link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background-color: rgba(16, 185, 129, 0.1);
+  color: var(--accent);
+  transition: all 0.2s ease;
+}
+
+.mobile-social-link:hover {
+  background-color: rgba(16, 185, 129, 0.2);
+  transform: translateY(-2px);
+}
+
+.mobile-nav-divider {
+  height: 1px;
+  background-color: rgba(16, 185, 129, 0.2);
+  margin: 0.5rem 0;
+}
+
+.mobile-nav-links {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.mobile-nav-link {
+  background: none;
+  border: none;
+  color: var(--text);
+  text-align: left;
+  padding: 0.75rem 1rem;
+  border-radius: var(--border-radius);
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.mobile-nav-link:hover {
+  background-color: rgba(16, 185, 129, 0.1);
+}
+
+.mobile-nav-link.active {
+  background-color: rgba(16, 185, 129, 0.2);
+  color: var(--accent);
+  font-weight: 600;
+  border-left: 3px solid var(--accent);
+}
+
+.mobile-nav-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 999;
+}
+
+/* Mobile mode enhancements */
+@media (max-width: 1024px) {
+  /* Layout adjustments */
+  .main-responsive-layout {
+    flex-direction: column;
+  }
+  
+  .sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: auto;
+    min-height: auto;
+    max-width: 100%;
+    flex: 0 0 auto;
+    z-index: 100;
+    padding: 0.8rem;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  }
+  
+  .content-area {
+    margin-top: 60px;
+    padding: 0.5rem 0.8rem;
+    width: 100%;
+    height: auto;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+  
+  .fit-content-grid {
+    gap: 0.8rem;
+    padding-bottom: 50px;
+  }
+  
+  /* Section styling */
+  .section,
+  #hobbies.section,
+  #achievements.section {
+    min-height: auto !important;
+    height: auto !important;
+    cursor: default;
+    margin-bottom: 1rem;
+  }
+  
+  .section:hover {
+    transform: none !important;
+    box-shadow: var(--box-shadow) !important;
+    border: 1px solid var(--border-color) !important;
+  }
+  
+  .section.section-active {
+    border: 1px solid var(--accent) !important;
+    box-shadow: 0 2px 8px rgba(16, 185, 129, 0.2) !important;
+  }
+  
+  /* Content containers */
+  .scrollable-container {
+    max-height: none !important;
+    min-height: auto !important;
+    overflow-y: visible !important;
+    padding: 0.5rem !important;
+    margin-bottom: 0.5rem !important;
+  }
+  
+  /* Ensure better spacing in scrollable containers */
+  .scrollable-container > div {
+    margin-top: 0 !important;
+  }
+  
+  /* Better font size consistency */
+  .scrollable-container span {
+    font-size: 0.85rem !important;
+  }
+  
+  /* Better progress bar display */
+  .scrollable-container div[style*="display: flex; justify-content: space-between"] {
+    align-items: center !important;
+    margin-bottom: 0.3rem !important;
+  }
+  
+  /* Display all content in mobile view */
+  #skills .scrollable-container,
+  #experience .scrollable-container,
+  #education .scrollable-container,
+  #projects .scrollable-container,
+  #hobbies .scrollable-container,
+  #achievements .scrollable-container {
+    max-height: none !important;
+    overflow-y: visible !important;
+    padding-bottom: 0.5rem;
+  }
+  
+  /* Hide scroll indicators on mobile */
+  .scroll-indicator {
+    display: none !important;
+  }
+  
+  /* Typography improvements */
+  .section-title {
+    font-size: 1.2rem !important;
+    margin-bottom: 0.8rem !important;
+  }
+  
+  p, li {
+    font-size: 0.85rem !important;
+    line-height: 1.5 !important;
+  }
+  
+  h3 {
+    font-size: 0.95rem !important;
+  }
+  
+  /* Skills section mobile improvements */
+  #skills .scrollable-container {
+    padding: 0.5rem 0.6rem !important;
+  }
+  
+  #skills .scrollable-container > div > div {
+    margin-bottom: 0.8rem !important;
+  }
+  
+  /* Make skill tags more readable on mobile */
+  .skill-tag {
+    font-size: 0.8rem !important;
+    padding: 0.3rem 0.5rem !important;
+    margin: 0.1rem !important;
+    background-color: rgba(16, 185, 129, 0.1) !important;
+    border-radius: 4px !important;
+    white-space: nowrap !important;
+    display: inline-block !important;
+  }
+  
+  /* Increase tap target for skill tags */
+  #skills div[style*="flexWrap: wrap"] > span {
+    padding: 0.4rem 0.6rem !important;
+    margin: 0.15rem !important;
+  }
+  
+  /* Make progress bars more visible */
+  #skills div[style*="backgroundColor: rgba(255, 255, 255, 0.1)"] {
+    height: 8px !important;
+    margin-bottom: 0.5rem !important;
+  }
+  
+  /* Grid items in achievements */
+  #achievements .scrollable-container > div {
+    display: grid;
+    grid-template-columns: 1fr !important;
+  }
+  
+  #achievements .scrollable-container > div > div > div {
+    grid-template-columns: 1fr !important;
+  }
+  
+  /* Touch improvements */
+  a, button, .section, .mobile-nav-link {
+    touch-action: manipulation;
+  }
+  
+  /* Increase tap target sizes */
+  a, button {
+    min-height: 44px;
+    min-width: 44px;
+    padding: 0.6rem;
+    margin: 0.2rem;
+  }
+  
+  /* Better active states for touch */
+  a:active, button:active, .section:active {
+    transform: scale(0.98);
+    transition: transform 0.1s ease;
+  }
+  
+  /* Achievements section specific improvements */
+  #achievements .scrollable-container {
+    padding: 0.3rem !important;
+  }
+  
+  #achievements h3 {
+    margin-bottom: 0.3rem !important;
+    padding-bottom: 0.3rem !important;
+  }
+  
+  #achievements .scrollable-container > div > div {
+    margin-bottom: 0.6rem !important;
+  }
+  
+  #achievements .scrollable-container > div > div > div {
+    display: block !important;
+    grid-template-columns: 1fr !important;
+  }
+  
+  #achievements .scrollable-container > div > div > div > div {
+    padding: 0.5rem !important;
+    margin-bottom: 0.5rem !important;
+  }
+  
+  /* Fix grid layout in mobile view */
+  .fit-content-grid {
+    display: block !important;
+    padding-bottom: 5rem !important;
+    overflow-y: auto !important;
+    max-height: none !important;
+    height: auto !important;
+  }
+  
+  body, html {
+    height: 100% !important;
+    overflow-y: auto !important;
+    position: relative !important;
+    -webkit-overflow-scrolling: touch !important;
+  }
+  
+  .main-responsive-layout {
+    height: auto !important;
+    min-height: 100% !important;
+    overflow: visible !important;
+  }
+  
+  .section {
+    width: 100% !important;
+    margin-bottom: 1rem !important;
+    grid-area: auto !important;
+  }
+  
+  /* Mobile navigation positioning */
+  .mobile-nav-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 0.5rem 1rem;
+    z-index: 1000;
+    background-color: var(--background-lighter);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    height: auto;
+  }
+  
+  /* Ensure the content area is scrollable */
+  .content-area.fit-content-area {
+    overflow-y: auto !important;
+    -webkit-overflow-scrolling: touch !important;
+    height: auto !important;
+    padding-top: 20px !important;
+    padding-bottom: 100px !important;
+  }
+  
+  /* Hide desktop header in mobile view */
+  .sidebar {
+    display: none;
+  }
+}
+
+/* Ensure consistent sizes for all sections */
+#hobbies.section,
+#skills.section,
+#projects.section,
+#experience.section,
+#education.section,
+#achievements.section {
+  min-height: 180px;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+}
