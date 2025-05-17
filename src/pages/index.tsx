@@ -11,6 +11,8 @@ import { Achievements } from '../components/Achievements';
 import MobileNav from '../components/MobileNav';
 import resumeData from '../data/resume';
 import { motion, AnimatePresence } from 'framer-motion';
+import scrollStyles from '../styles/ScrollFix.module.css';
+import cardStyles from '../styles/CardFix.module.css';
 
 interface HomeProps {
   toggleTheme?: () => void;
@@ -79,12 +81,14 @@ export default function Home({ toggleTheme = () => {}, isDarkTheme = true }: Hom
     initialPosition: GRID_POSITIONS[id],
     targetPosition: positions[id], 
     onClick: () => handleSectionClick(id),
+    className: `${cardStyles.card} ${cardStyles[`${id}Card`]}`,
+    contentClassName: cardStyles.cardContent,
   });
 
   return (
     <>
       <Head>
-        <title>{resumeData.personalInfo.name} - Resume</title>
+        <title>{`${resumeData.personalInfo.name} - Resume`}</title>
         <meta name="description" content={`${resumeData.personalInfo.name}'s personal resume website`} />
         <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
         <link rel="icon" href="/favicon.ico" />
@@ -98,12 +102,12 @@ export default function Home({ toggleTheme = () => {}, isDarkTheme = true }: Hom
         isDarkTheme={isDarkTheme} 
       />
       
-      <div className="main-responsive-layout fit-screen-layout">
-        <aside className="sidebar">
+      <div className={`main-responsive-layout ${scrollStyles.scrollableLayout}`}>
+        <aside className={`sidebar ${scrollStyles.stickyHeader}`}>
           <Header toggleTheme={toggleTheme} isDarkTheme={isDarkTheme} />
         </aside>
-        <main className="content-area fit-content-area">
-          <div className="content-grid fit-content-grid">
+        <main className={`content-area ${scrollStyles.scrollableContent}`}>
+          <div className={`content-grid ${scrollStyles.scrollableGrid} ${cardStyles.cardContainer}`}>
             <About {...getSectionProps('about')} />
             <Skills {...getSectionProps('skills')} />
             <Experience {...getSectionProps('experience')} />

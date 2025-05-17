@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState, useCallback } from 'react';
 import { motion } from 'framer-motion';
 import { FaChevronDown, FaChevronUp } from 'react-icons/fa';
 import resumeData from '../data/resume';
+import styles from '../styles/CardFix.module.css';
 
 interface SkillsProps {
   id: string;
@@ -97,11 +98,11 @@ const Skills: React.FC<SkillsProps> = ({
     <div key={uniqueKey} style={{ marginBottom: '0.3rem', width: '100%' }}>
       <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '0.1rem' }}>
         <span style={{ fontSize: isActive ? '0.85rem' : '0.7rem', transition: 'all 0.3s ease' }}>{skillName}</span>
-        <span style={{ fontSize: isActive ? '0.85rem' : '0.7rem', color: 'var(--primary)', transition: 'all 0.3s ease' }}>{proficiency}%</span>
+        <span style={{ fontSize: isActive ? '0.85rem' : '0.7rem', color: 'var(--accent)', transition: 'all 0.3s ease' }}>{proficiency}%</span>
       </div>
       <div style={{ 
         height: isActive ? '6px' : '5px', 
-        backgroundColor: 'rgba(255, 255, 255, 0.1)', 
+        backgroundColor: 'var(--primary-light)', 
         borderRadius: '3px',
         overflow: 'hidden',
         transition: 'all 0.3s ease'
@@ -113,7 +114,7 @@ const Skills: React.FC<SkillsProps> = ({
           transition={{ duration: 1, ease: "easeOut" }}
           style={{ 
             height: '100%', 
-            backgroundColor: 'var(--primary)',
+            backgroundColor: 'var(--accent)',
             borderRadius: '3px'
           }}
         />
@@ -124,7 +125,7 @@ const Skills: React.FC<SkillsProps> = ({
   return (
     <motion.section 
       id="skills" 
-      className={`section section-skills ${isActive ? 'section-active' : ''}`}
+      className={`section section-skills ${isActive ? 'section-active' : ''} ${styles.skillsCard}`}
       onClick={onClick}
       layout
       transition={{
@@ -147,7 +148,7 @@ const Skills: React.FC<SkillsProps> = ({
         scale: isActive ? 1.02 : 1,
         zIndex: isActive ? 2 : 1,
         boxShadow: isActive 
-          ? '0 16px 48px 0 rgba(16,185,129,0.22), 0 2px 16px 0 rgba(0,0,0,0.13)' 
+          ? '0 16px 48px 0 rgba(249,177,122,0.22), 0 2px 16px 0 rgba(0,0,0,0.15)' 
           : '0 2px 4px rgba(0, 0, 0, 0.2)'
       }}
     >
@@ -156,22 +157,23 @@ const Skills: React.FC<SkillsProps> = ({
         position: 'relative', 
         borderRadius: '0.3rem', 
         background: 'var(--card-background)', 
-        minHeight: isActive ? '200px' : '90px', 
-        maxHeight: isActive ? '500px' : '180px', 
-        height: 'auto', 
+        minHeight: isActive ? '420px' : '90px', 
+        maxHeight: isActive ? 'none' : '180px', 
+        height: isActive ? 'auto' : 'auto', 
         overflow: 'visible', 
         transition: 'all 0.3s ease'
       }}>
-        <div
+        <div 
           ref={scrollContainerRef}
+          className={styles.skillsContent}
           style={{ 
-            flex: 1, 
-            overflowY: 'auto', 
-            paddingRight: '4px', 
-            padding: '0.5rem', 
-            paddingBottom: hasOverflow || isActive || isMobile ? '50px' : '28px',
-            maxHeight: isActive || isMobile ? '600px' : '100%',
-            transition: 'all 0.3s ease'
+            overflowY: 'auto',
+            height: '100%',
+            padding: '0.5rem',
+            scrollbarWidth: 'thin',
+            position: 'relative',
+            transition: 'all 0.3s ease',
+            minHeight: isActive ? '400px' : 'auto'
           }}
         >
           <div style={{ marginBottom: '0.5rem' }}>
@@ -185,15 +187,16 @@ const Skills: React.FC<SkillsProps> = ({
             >
               {personalSkills.map((skill, index) => (
                 <motion.div 
-                  key={index}
+                  key={`${index}-${skill.name}`}
                   variants={item}
-                  style={{
-                    backgroundColor: 'rgba(16, 185, 129, 0.1)',
+                  style={{ 
+                    backgroundColor: 'var(--accent-transparent)',
                     padding: isActive ? '0.25rem 0.5rem' : '0.18rem 0.4rem',
                     borderRadius: '0.3rem',
-                    border: '1px solid var(--primary)',
+                    border: '1px solid var(--accent)',
                     fontSize: isActive ? '0.8rem' : '0.65rem',
                     fontWeight: 500,
+                    color: 'var(--text)',
                     transition: 'all 0.3s ease'
                   }}
                 >
@@ -216,7 +219,7 @@ const Skills: React.FC<SkillsProps> = ({
                 variants={item}
                 style={{ marginBottom: '0.8rem' }}
               >
-                <h3 style={{ marginBottom: '0.3rem', color: 'var(--text)', fontSize: isActive || isMobile ? '0.95rem' : '0.8rem', transition: 'all 0.3s ease' }}>{skillCategory.category}</h3>
+                <h3 style={{ marginBottom: '0.3rem', color: 'var(--secondary)', fontSize: isActive || isMobile ? '0.95rem' : '0.8rem', transition: 'all 0.3s ease' }}>{skillCategory.category}</h3>
                 {skillCategory.category === 'Programming Languages' || skillCategory.category === 'Frameworks' ? (
                   <div style={{ display: 'flex', flexDirection: 'column', width: '100%' }}>
                     {skillCategory.items.slice(0, isActive || isMobile ? undefined : 4).map((skill, skillIndex) => {
@@ -231,7 +234,13 @@ const Skills: React.FC<SkillsProps> = ({
                       <span 
                         key={`${skillCategory.category}-${skill}-${skillIndex}`}
                         className="skill-tag"
-                        style={{ fontSize: isActive ? '0.8rem' : '0.65rem', transition: 'all 0.3s ease' }}
+                        style={{ 
+                          fontSize: isActive ? '0.8rem' : '0.65rem', 
+                          transition: 'all 0.3s ease',
+                          backgroundColor: 'var(--accent-transparent)',
+                          color: 'var(--text)',
+                          border: '1px solid var(--accent)'
+                        }}
                       >
                         {skill}
                       </span>
@@ -242,16 +251,43 @@ const Skills: React.FC<SkillsProps> = ({
             ))}
           </motion.div>
         </div>
-        {/* Modern scroll indicator - only show if has overflow */}
-        {hasOverflow && (
-          <div className="scroll-indicator" onClick={(e) => {
-            e.stopPropagation();
-            handleScrollIndicatorClick();
-          }} style={{ cursor: 'pointer' }}>
+        {/* Modern scroll indicator - only show if has overflow and is active or mobile */}
+        {hasOverflow && (isActive || isMobile) && (
+          <div 
+            className="scroll-indicator" 
+            onClick={(e) => {
+              e.stopPropagation();
+              handleScrollIndicatorClick();
+            }} 
+            style={{ 
+              cursor: 'pointer',
+              position: 'absolute',
+              bottom: '10px',
+              left: '50%',
+              transform: 'translateX(-50%)',
+              backgroundColor: 'var(--accent)',
+              width: '30px',
+              height: '30px',
+              borderRadius: '50%',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              boxShadow: '0 2px 5px var(--shadow-color)',
+              opacity: 0.9,
+              zIndex: 5
+            }}
+          >
             <motion.div
               animate={{ y: [0, 3, 0] }}
               transition={{ repeat: Infinity, duration: 1.5 }}
-              style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', width: '100%', height: '100%' }}
+              style={{ 
+                display: 'flex', 
+                alignItems: 'center', 
+                justifyContent: 'center', 
+                width: '100%', 
+                height: '100%',
+                color: 'white'
+              }}
             >
               {isAtBottom ? <FaChevronUp size={16} /> : <FaChevronDown size={16} />}
             </motion.div>

@@ -2,42 +2,62 @@
 
 :root {
   /* Common variables for both themes */
-  --primary: #6366f1; /* Indigo primary */
-  --primary-dark: #4f46e5; /* Darker indigo */
-  --secondary: #f59e0b; /* Amber accent */
-  --tertiary: #ec4899; /* Pink accent */
+  --primary: #676f9d; /* Slate purple from palette */
+  --primary-dark: #424769; /* Dark blue-purple from palette */
+  --primary-light: rgba(103, 111, 157, 0.2); /* Light version of primary */
+  --secondary: #f9b17a; /* Peach/orange accent from palette */
+  --tertiary: #f9b17a; /* Using same peach accent for tertiary */
+  --accent-transparent: rgba(249, 177, 122, 0.1); /* Transparent version of accent */
+  --accent-rgb: 249, 177, 122; /* RGB values for accent color - peach */
+  --shadow-color: rgba(0, 0, 0, 0.2); /* Shadow color */
   --border-radius: 8px;
   --section-padding: 16px;
-  --box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  --box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 }
 
 /* Dark theme (default) */
 :root, [data-theme="dark"] {
-  --background: #0f172a; /* Slate 900 - modern deep background */
-  --background-lighter: #1e293b; /* Slate 800 - lighter dark background */
-  --background-gradient: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
-  --text: #f8fafc; /* Slate 50 - nearly white text */
-  --text-light: #cbd5e1; /* Slate 300 - light text */
-  --accent: #f59e0b; /* Amber 500 - vibrant accent */
-  --card-background: rgba(30, 41, 59, 0.6); /* Slate 800 with transparency */
-  --card-backdrop-filter: blur(8px);
-  --border-color: rgba(99, 102, 241, 0.1);
-  --glass-effect: rgba(255, 255, 255, 0.05);
+  --background: #03002e; /* Darkest blue */
+  --background-lighter: #010048; /* Slightly lighter dark blue */
+  --background-gradient: linear-gradient(135deg, #03002e 0%, #010057 100%);
+  --text: #ffffff; /* Pure white for contrast */
+  --text-light: #e0e0e0; /* Very light gray */
+  --accent: #4d8cff; /* Bright blue accent */
+  --accent-rgb: 77, 140, 255; /* RGB values for accent color */
+  --accent-transparent: rgba(77, 140, 255, 0.15); /* Transparent version of accent */
+  --primary: #010057; /* Medium dark blue */
+  --primary-dark: #03002e; /* Darkest blue */
+  --primary-light: rgba(2, 0, 108, 0.4); /* Light version of primary for skill bars */
+  --secondary: #6fa8ff; /* Lighter blue accent */
+  --tertiary: #a095ff; /* Purple-blue accent */
+  --shadow-color: rgba(0, 0, 0, 0.5); /* Shadow color for dark theme */
+  --card-background: rgba(1, 0, 72, 0.8); /* Dark blue with transparency */
+  --card-backdrop-filter: blur(10px);
+  --border-color: rgba(77, 140, 255, 0.2); /* Blue border with transparency */
+  --glass-effect: rgba(9, 0, 136, 0.15);
 }
 
 /* Light theme */
 [data-theme="light"] {
-  --background: #f8fafc; /* Slate 50 - clean white background */
-  --background-lighter: #f1f5f9; /* Slate 100 - subtle light background */
-  --background-gradient: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
-  --text: #0f172a; /* Slate 900 - deep text color */
-  --text-light: #334155; /* Slate 700 - medium text */
-  --accent: #4f46e5; /* Indigo 600 - vibrant accent */
-  --card-background: rgba(255, 255, 255, 0.7);
-  --card-backdrop-filter: blur(12px);
-  --box-shadow: 0 10px 30px rgba(15, 23, 42, 0.05);
-  --border-color: rgba(99, 102, 241, 0.1);
-  --glass-effect: rgba(255, 255, 255, 0.5);
+  --background: #f5f7fa; /* Crisp, minimal light background */
+  --background-lighter: #f8fcff; /* Light blue tint for subtle contrast */
+  --background-gradient: linear-gradient(135deg, #f5f7fa 0%, #9bedff 50%);
+  --text: #02418a; /* Deep blue for text */
+  --text-light: #0366d6; /* Medium blue for secondary text */
+  --accent: #00d2ff; /* Bright cyan blue accent */
+  --accent-rgb: 0, 210, 255; /* RGB values for accent color */
+  --accent-transparent: rgba(0, 210, 255, 0.12); /* Transparent version of accent */
+  --primary: #0366d6; /* Blue for primary elements */
+  --primary-dark: #034ea0; /* Darker blue */
+  --primary-light: rgba(155, 237, 255, 0.4); /* Light cyan for skill bars */
+  --secondary: #2edaff; /* Medium cyan as secondary color */
+  --tertiary: #50e0ff; /* Light cyan as tertiary */
+  --shadow-color: rgba(0, 210, 255, 0.15); /* Subtle blue shadow */
+  --card-background: rgba(255, 255, 255, 0.85); /* White with transparency */
+  --card-backdrop-filter: blur(10px);
+  --box-shadow: 0 10px 25px rgba(0, 210, 255, 0.1);
+  --border-color: rgba(0, 210, 255, 0.2); /* Cyan border with transparency */
+  --glass-effect: rgba(155, 237, 255, 0.2); /* Cyan glass effect */
 }
 
 * {
@@ -47,30 +67,31 @@
 }
 
 /* Custom Scrollbar Styling */
-::-webkit-scrollbar {
+*::-webkit-scrollbar {
   width: 8px;
-  height: 8px;
 }
 
-::-webkit-scrollbar-track {
-  background: rgba(58, 110, 165, 0.05);
-  border-radius: 10px;
+*::-webkit-scrollbar-track {
+  background: transparent;
+  border-radius: 4px;
 }
 
-::-webkit-scrollbar-thumb {
-  background: rgba(58, 110, 165, 0.3);
-  border-radius: 10px;
-  transition: all 0.3s ease;
+*::-webkit-scrollbar-thumb {
+  background: var(--accent);
+  border-radius: 4px;
+  border: 2px solid transparent;
+  background-clip: padding-box;
 }
 
-::-webkit-scrollbar-thumb:hover {
-  background: rgba(58, 110, 165, 0.5);
+*::-webkit-scrollbar-thumb:hover {
+  background: var(--accent);
+  opacity: 0.8;
 }
 
-/* Firefox scrollbar */
+/* Firefox scrollbar styling */
 * {
   scrollbar-width: thin;
-  scrollbar-color: rgba(58, 110, 165, 0.3) rgba(58, 110, 165, 0.05);
+  scrollbar-color: var(--accent) transparent;
 }
 
 html,
@@ -84,6 +105,8 @@ body {
   line-height: 1.6;
   letter-spacing: 0.01em;
   min-height: 100vh;
+  max-width: 100%;
+  overflow-x: hidden;
 }
 
 a {
@@ -125,7 +148,9 @@ p, li {
 
 .container {
   width: 100%;
+  max-width: 100vw;
   padding: 0 0.75rem;
+  overflow-x: hidden;
 }
 
 .section {
@@ -138,8 +163,8 @@ p, li {
   box-shadow: var(--box-shadow);
   height: auto;
   border: 1px solid var(--border-color);
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  will-change: transform, opacity, filter;
+  transition: all 0.7s cubic-bezier(0.34, 1.56, 0.64, 1);
+  will-change: transform, opacity, filter, box-shadow;
   transform: translate3d(0, 0, 0);
   backface-visibility: hidden;
   cursor: pointer;
@@ -147,11 +172,11 @@ p, li {
   overflow: hidden;
 }
 .section:hover {
-  box-shadow: 0 15px 35px rgba(99, 102, 241, 0.15), 0 5px 15px rgba(0, 0, 0, 0.05);
+  box-shadow: 0 15px 35px rgba(var(--accent-rgb, 249, 177, 122), 0.15), 0 5px 15px rgba(0, 0, 0, 0.05);
   transform: scale(1.01) translate3d(0, -3px, 0);
-  z-index: 2;
-  border-color: rgba(99, 102, 241, 0.2);
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  z-index: 5;
+  border-color: rgba(var(--accent-rgb, 249, 177, 122), 0.2);
+  transition: all 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
 .section:hover::before {
@@ -160,9 +185,9 @@ p, li {
 
 .section.focused {
   z-index: 10;
-  box-shadow: 0 25px 50px rgba(99, 102, 241, 0.2), 0 10px 20px rgba(0, 0, 0, 0.1);
-  transform: translate3d(0, 0, 0);
-  background: var(--background-lighter);
+  box-shadow: 0 25px 65px rgba(var(--accent-rgb, 249, 177, 122), 0.25), 0 15px 30px rgba(0, 0, 0, 0.15) !important;
+  transform: translateY(-8px) scale(1.03);
+  border-color: rgba(var(--accent-rgb, 249, 177, 122), 0.3);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
   border: 2px solid var(--accent);
@@ -186,6 +211,8 @@ p, li {
   border: 2px solid var(--accent);
   position: relative;
   z-index: 10;
+  transition: all 0.8s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+  border-color: rgba(249, 177, 122, 0.3);
 }
 
 .focused-mode .section.focused .scrollable-container {
@@ -248,6 +275,10 @@ p, li {
   transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
+.card-transition {
+  transition: all 0.7s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
 .section-title {
   font-size: 1.1rem;
   margin-bottom: 0.5rem;
@@ -256,6 +287,7 @@ p, li {
   display: inline-block;
   font-weight: 700;
   letter-spacing: -0.01em;
+  text-transform: uppercase;
 }
 
 .section-title::after {
@@ -264,9 +296,14 @@ p, li {
   bottom: -4px;
   left: 0;
   width: 30px;
-  height: 3px;
-  background: linear-gradient(90deg, var(--accent), var(--tertiary));
-  border-radius: 3px;
+  height: 2px;
+  background: var(--accent);
+  border-radius: 2px;
+  transition: width 0.3s ease;
+}
+
+.section:hover .section-title::after {
+  width: 100%;
 }
 
 .grid {
@@ -286,7 +323,7 @@ p, li {
 
 .skill-tag {
   display: inline-block;
-  background-color: rgba(99, 102, 241, 0.08);
+  background-color: rgba(249, 177, 122, 0.1);
   color: var(--text);
   padding: 0.15rem 0.6rem;
   border-radius: 999px;
@@ -305,21 +342,23 @@ p, li {
 }
 
 .button {
-  background-color: var(--primary);
-  color: white;
-  padding: 0.6rem 1.2rem;
-  border-radius: 0.4rem;
+  padding: 0.75rem 1.25rem;
+  border-radius: 0.5rem;
+  background-color: var(--accent);
+  color: var(--background);
   font-weight: 600;
   transition: all 0.2s;
-  font-size: 0.85rem;
   display: inline-flex;
   align-items: center;
   justify-content: center;
   gap: 0.5rem;
-  box-shadow: 0 4px 12px rgba(99, 102, 241, 0.2);
+  box-shadow: 0 4px 12px rgba(var(--accent-rgb), 0.2);
   position: relative;
   overflow: hidden;
   z-index: 1;
+  letter-spacing: 0.02em;
+  border: none;
+  outline: none;
 }
 
 .button::before {
@@ -329,14 +368,20 @@ p, li {
   left: 0;
   width: 100%;
   height: 100%;
-  background: linear-gradient(45deg, var(--primary), var(--primary-dark));
+  background: linear-gradient(45deg, var(--accent), var(--tertiary));
   z-index: -1;
   transition: opacity 0.3s ease;
+  opacity: 0;
 }
 
 .button:hover {
   transform: translateY(-2px);
-  box-shadow: 0 6px 18px rgba(99, 102, 241, 0.25);
+  box-shadow: 0 6px 20px rgba(var(--accent-rgb), 0.25);
+  color: var(--background);
+}
+
+.button:hover::before {
+  opacity: 1;
 }
 
 .button:active {
@@ -456,12 +501,15 @@ p, li {
   background: transparent;
 }
 .scrollable-container:hover::-webkit-scrollbar-thumb {
-  background: linear-gradient(180deg, var(--tertiary) 60%, var(--accent) 100%);
+  background: var(--accent);
+  opacity: 0.95;
 }
 
 /* Hide scrollbars on Windows when not scrolling */
 .scrollable-container {
   scrollbar-gutter: stable both-edges;
+  overflow-x: hidden;
+  max-width: 100%;
 }
 
 .scrollable-container::after {
@@ -833,10 +881,12 @@ header.section {
   flex: 1 1 0;
   min-height: 0;
 }
-#skills .scrollable-container {
-  height: 100% !important;
-  max-height: 100% !important;
-  overflow-y: auto;
+#skills .card:global(.section-active) .cardContent {
+  min-height: 300px !important;
+  max-height: none !important;
+  overflow-y: auto !important;
+  transition-delay: 0.1s;
+  border-radius: 12px;
 }
 
 /* Responsive: stack vertically on small screens */
@@ -901,14 +951,14 @@ header.section {
 .mobile-nav-toggle:hover,
 .theme-toggle-mobile:hover,
 .mobile-nav-close:hover {
-  background-color: rgba(16, 185, 129, 0.1);
+  background-color: rgba(249, 177, 122, 0.1);
 }
 
 .mobile-nav-toggle:active,
 .theme-toggle-mobile:active,
 .mobile-nav-close:active {
   transform: scale(0.95);
-  background-color: rgba(16, 185, 129, 0.2);
+  background-color: rgba(249, 177, 122, 0.2);
 }
 
 .mobile-nav-menu {
@@ -983,19 +1033,19 @@ header.section {
   width: 36px;
   height: 36px;
   border-radius: 50%;
-  background-color: rgba(16, 185, 129, 0.1);
+  background-color: rgba(249, 177, 122, 0.1);
   color: var(--accent);
   transition: all 0.2s ease;
 }
 
 .mobile-social-link:hover {
-  background-color: rgba(16, 185, 129, 0.2);
+  background-color: rgba(249, 177, 122, 0.2);
   transform: translateY(-2px);
 }
 
 .mobile-nav-divider {
   height: 1px;
-  background-color: rgba(16, 185, 129, 0.2);
+  background-color: rgba(249, 177, 122, 0.2);
   margin: 0.5rem 0;
 }
 
@@ -1165,10 +1215,12 @@ header.section {
     font-size: 0.8rem !important;
     padding: 0.3rem 0.5rem !important;
     margin: 0.1rem !important;
-    background-color: rgba(16, 185, 129, 0.1) !important;
+    background-color: var(--accent-transparent) !important;
+    border: 1px solid var(--accent) !important;
     border-radius: 4px !important;
     white-space: nowrap !important;
     display: inline-block !important;
+    color: var(--text) !important;
   }
   
   /* Increase tap target for skill tags */

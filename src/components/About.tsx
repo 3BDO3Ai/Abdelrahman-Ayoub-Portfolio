@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { motion } from 'framer-motion';
 import { FaChevronDown, FaChevronUp } from 'react-icons/fa';
+import SectionWrapper from './SectionWrapper';
 
 interface AboutProps {
   id: string;
@@ -9,6 +10,8 @@ interface AboutProps {
   initialPosition: string;
   targetPosition: string;
   onClick: () => void;
+  className?: string;
+  contentClassName?: string;
 }
 
 const About: React.FC<AboutProps> = ({ 
@@ -17,7 +20,9 @@ const About: React.FC<AboutProps> = ({
   isPrevious, 
   initialPosition, 
   targetPosition, 
-  onClick 
+  onClick,
+  className = '',
+  contentClassName = ''
 }) => {
   const scrollContainerRef = useRef<HTMLDivElement>(null);
   const [isAtBottom, setIsAtBottom] = useState(false);
@@ -64,51 +69,23 @@ const About: React.FC<AboutProps> = ({
   };
 
   return (
-    <motion.section 
-      id="about" 
-      className={`section section-about ${isActive ? 'section-active' : ''}`}
+    <SectionWrapper
+      id={id}
+      title="About Me"
+      isActive={isActive}
+      isPrevious={isPrevious}
+      initialPosition={initialPosition}
+      targetPosition={targetPosition}
       onClick={onClick}
-      layout
-      transition={{
-        type: "spring",
-        stiffness: 350,
-        damping: 30,
-        duration: 0.4
-      }}
-      style={{ 
-        gridArea: targetPosition,
-        padding: '0.7rem',
-        display: 'flex',
-        flexDirection: 'column',
-        position: 'relative',
-        cursor: 'pointer',
-      }}
-      initial={false}
-      animate={{
-        scale: isActive ? 1.02 : 1,
-        zIndex: isActive ? 2 : 1,
-        boxShadow: isActive 
-          ? '0 16px 48px 0 rgba(16,185,129,0.22), 0 2px 16px 0 rgba(0,0,0,0.13)' 
-          : '0 2px 4px rgba(0, 0, 0, 0.2)'
-      }}
-      whileHover={{ 
-        boxShadow: isActive 
-          ? '0 16px 48px 0 rgba(16,185,129,0.22), 0 2px 16px 0 rgba(0,0,0,0.13)' 
-          : '0 4px 8px rgba(0, 0, 0, 0.15)' 
-      }}
+      className={className}
+      contentClassName={contentClassName}
     >
-      <h2 className="section-title" style={{ marginBottom: '0.7rem' }}>About Me</h2>
-      
       <div 
         ref={scrollContainerRef}
-        className="scrollable-container"
         style={{ 
-          overflowY: !isActive ? 'auto' : 'visible',
+          overflowY: 'auto',
           height: 'auto',
-          flex: 1,
-          paddingRight: !isActive ? '0.4rem' : '0',
-          minHeight: isActive ? '200px' : '90px',
-          maxHeight: isActive ? '500px' : '220px',
+          width: '100%',
           paddingBottom: hasOverflow ? '28px' : '0',
           transition: 'all 0.3s ease'
         }}
@@ -207,7 +184,7 @@ const About: React.FC<AboutProps> = ({
           </motion.div>
         </div>
       )}
-    </motion.section>
+    </SectionWrapper>
   );
 };
 

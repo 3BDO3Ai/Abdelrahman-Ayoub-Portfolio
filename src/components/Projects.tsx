@@ -1,7 +1,8 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React from 'react';
 import { motion } from 'framer-motion';
-import { FaChevronDown, FaChevronUp } from 'react-icons/fa';
 import resumeData from '../data/resume';
+import ContentSection from './ContentSection';
+import styles from '../styles/CardFix.module.css';
 
 interface ProjectsProps {
   id: string;
@@ -10,6 +11,8 @@ interface ProjectsProps {
   initialPosition: string;
   targetPosition: string;
   onClick: () => void;
+  className?: string;
+  contentClassName?: string;
 }
 
 const Projects: React.FC<ProjectsProps> = ({ 
@@ -18,100 +21,25 @@ const Projects: React.FC<ProjectsProps> = ({
   isPrevious, 
   initialPosition, 
   targetPosition, 
-  onClick 
+  onClick,
+  className = '',
+  contentClassName = '' 
 }) => {
-  const scrollContainerRef = useRef<HTMLDivElement>(null);
-  const [isAtBottom, setIsAtBottom] = useState(false);
-  const [hasOverflow, setHasOverflow] = useState(false);
 
-  useEffect(() => {
-    const container = scrollContainerRef.current;
-    if (!container) return;
-    
-    const checkForOverflow = () => {
-      const hasContentOverflow = container.scrollHeight > container.clientHeight + 5;
-      setHasOverflow(hasContentOverflow);
-      container.classList.toggle('has-overflow', hasContentOverflow);
-    };
-    
-    const handleScroll = () => {
-      if (!container) return;
-      const isBottom = container.scrollHeight - container.scrollTop <= container.clientHeight + 10;
-      setIsAtBottom(isBottom);
-    };
-    
-    checkForOverflow();
-    handleScroll();
-    container.addEventListener('scroll', handleScroll);
-    window.addEventListener('resize', checkForOverflow);
-    
-    return () => {
-      container.removeEventListener('scroll', handleScroll);
-      window.removeEventListener('resize', checkForOverflow);
-    };
-  }, [isActive]); // Re-run when active state changes
-
-  const handleScrollIndicatorClick = (e: React.MouseEvent) => {
-    e.stopPropagation(); // Prevent triggering parent onClick
-    
-    const container = scrollContainerRef.current;
-    if (!container) return;
-    if (isAtBottom) {
-      container.scrollTo({ top: 0, behavior: 'smooth' });
-    } else {
-      const newPosition = container.scrollTop + 60;
-      container.scrollTo({ top: newPosition, behavior: 'smooth' });
-    }
-  };
 
   return (
-    <motion.section 
-      id="projects" 
-      className={`section section-projects ${isActive ? 'section-active' : ''}`}
+    <ContentSection
+      id={id}
+      title="Projects"
+      isActive={isActive}
+      isPrevious={isPrevious}
+      initialPosition={initialPosition}
+      targetPosition={targetPosition}
       onClick={onClick}
-      layout
-      transition={{
-        type: "spring",
-        stiffness: 350,
-        damping: 30,
-        duration: 0.4
-      }}
-      style={{ 
-        gridArea: targetPosition,
-        padding: '0.7rem',
-        display: 'flex',
-        flexDirection: 'column',
-        position: 'relative',
-        cursor: 'pointer'
-      }}
-      initial={false}
-      animate={{
-        scale: isActive ? 1.02 : 1,
-        zIndex: isActive ? 2 : 1,
-        boxShadow: isActive 
-          ? '0 16px 48px 0 rgba(16,185,129,0.22), 0 2px 16px 0 rgba(0,0,0,0.13)' 
-          : '0 2px 4px rgba(0, 0, 0, 0.2)'
-      }}
-      whileHover={{ 
-        boxShadow: isActive 
-          ? '0 16px 48px 0 rgba(16,185,129,0.22), 0 2px 16px 0 rgba(0,0,0,0.13)' 
-          : '0 4px 8px rgba(0, 0, 0, 0.15)' 
-      }}
+      className={`${className} ${styles.projectsCard}`}
+      contentClassName={`${contentClassName} ${styles.projectsContent}`}
     >
-      <h2 className="section-title" style={{ marginBottom: '0.7rem' }}>Projects</h2>
-      <div 
-        ref={scrollContainerRef}
-        className="scrollable-container"
-        style={{ 
-          minHeight: isActive ? '200px' : '110px',
-          maxHeight: isActive ? '500px' : '180px',
-          overflowY: 'auto', 
-          height: 'auto',
-          paddingBottom: hasOverflow ? '28px' : '0',
-          transition: 'all 0.3s ease'
-        }}
-      >
-        <div style={{ marginTop: '0.2rem' }}>
+        <div style={{ marginTop: '0.2rem', height: '100%' }}>
           {resumeData.projects.map((project, index) => (
             <motion.div 
               key={index}
@@ -156,20 +84,7 @@ const Projects: React.FC<ProjectsProps> = ({
             </motion.div>
           ))}
         </div>
-      </div>
-      {/* Modern scroll indicator - only show if needed */}
-      {hasOverflow && (
-        <div className="scroll-indicator" onClick={handleScrollIndicatorClick} style={{ cursor: 'pointer' }}>
-          <motion.div
-            animate={{ y: [0, 3, 0] }}
-            transition={{ repeat: Infinity, duration: 1.5 }}
-            style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', width: '100%', height: '100%' }}
-          >
-            {isAtBottom ? <FaChevronUp size={16} /> : <FaChevronDown size={16} />}
-          </motion.div>
-        </div>
-      )}
-    </motion.section>
+    </ContentSection>
   );
 };
 

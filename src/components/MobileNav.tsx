@@ -1,8 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { FaBars, FaTimes, FaLinkedin, FaGithub, FaEnvelope, FaDownload } from 'react-icons/fa';
-import { BsSun, BsMoon } from 'react-icons/bs';
+import { FaBars, FaTimes, FaLinkedin, FaGithub, FaEnvelope, FaDownload, FaSun, FaMoon } from 'react-icons/fa';
 import resumeData from '../data/resume';
+import { mobileScrollToSection } from '../utils/scrollUtils';
 
 interface MobileNavProps {
   activeSection: string;
@@ -27,28 +27,13 @@ const MobileNav: React.FC<MobileNavProps> = ({
     // Close menu first
     setIsOpen(false);
     
+    // Update active section immediately to trigger UI changes
+    handleSectionClick(id);
+    
     // Small delay to allow menu closing animation
     setTimeout(() => {
-      // Find the element to scroll to
-      const element = document.getElementById(id);
-      if (element) {
-        // Calculate scroll position with offset for header
-        const headerOffset = 70;
-        const elementPosition = element.getBoundingClientRect().top;
-        const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
-        
-        // Smooth scroll to the element
-        window.scrollTo({
-          top: offsetPosition,
-          behavior: 'smooth'
-        });
-        
-        // After scrolling, update active section
-        handleSectionClick(id);
-      } else {
-        // If element not found, just update active section
-        handleSectionClick(id);
-      }
+      // Use our optimized mobile scrolling utility
+      mobileScrollToSection(id);
     }, 300);
   };
 
@@ -80,8 +65,24 @@ const MobileNav: React.FC<MobileNavProps> = ({
             className="theme-toggle-mobile" 
             onClick={toggleTheme}
             aria-label={isDarkTheme ? 'Switch to light mode' : 'Switch to dark mode'}
+            style={{
+              padding: '0.6rem',
+              fontSize: '1.4rem',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              width: '2.6rem',
+              height: '2.6rem',
+              margin: 0,
+              borderRadius: '50%',
+              backgroundColor: 'var(--background-lighter)',
+              transition: 'all 0.2s ease',
+              cursor: 'pointer',
+              border: 'none',
+              color: isDarkTheme ? '#F9D71C' : '#5A5A5A'
+            }}
           >
-            {isDarkTheme ? <BsSun size={18} /> : <BsMoon size={18} />}
+            {isDarkTheme ? <FaSun size={18} /> : <FaMoon size={18} />}
           </button>
         </div>
       </div>
