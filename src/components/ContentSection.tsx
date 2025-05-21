@@ -65,28 +65,29 @@ const ContentSection: React.FC<ContentSectionProps> = ({
         <motion.div 
           ref={contentRef}
           key={`${id}-content-${isActive ? 'active' : 'inactive'}`}
-          className={id === 'education' ? styles.educationSection : ''}
+          className={`${styles.motionContainer} ${id === 'education' ? styles.educationSection : ''}`}
           initial={{ opacity: isActive ? 0.8 : 1, scale: isActive ? 0.95 : 1 }}
           animate={{ 
             opacity: 1, 
             scale: 1, 
             height: isActive ? '100%' : 'auto',
-            transition: { delay: isActive ? 0.1 : 0, duration: 0.5 }
+            transition: { delay: isActive ? 0.15 : 0, duration: 0.6 }
           }}
+          exit={{ opacity: 0.8, scale: 0.95 }}
           transition={{
             type: "spring",
-            stiffness: 200,
-            damping: 25,
-            duration: 0.6,
+            stiffness: 260,
+            damping: 28,
+            duration: 0.7,
           }}
           style={{ 
             height: isActive ? '100%' : 'auto',
             width: '100%',
             maxHeight: isActive ? 'none' : 'none',
             overflowY: isActive ? 'auto' : 'visible',
-            display: 'flex',
-            flexDirection: 'column',
-            minHeight: isActive ? (id === 'education' || id === 'projects' ? '377px' : '300px') : 'auto',
+            minHeight: isActive ? (id === 'education' ? '350px' : id === 'skills' ? '400px' : id === 'projects' ? '377px' : id === 'hobbies' ? '350px' : '300px') : 'auto',
+            willChange: 'transform, opacity',
+            zIndex: isActive ? 5 : 1
           }}
         >
           {children}

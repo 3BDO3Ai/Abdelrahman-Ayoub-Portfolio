@@ -28,6 +28,8 @@
   backface-visibility: hidden;
   perspective: 1000px;
   will-change: transform, opacity, box-shadow;
+  border-radius: var(--border-radius);
+  border: 1px solid var(--border-color);
 }
 
 /* Specific card sizing */
@@ -61,6 +63,19 @@
   flex-direction: column;
 }
 
+.educationSection {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.educationContent {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  flex: 1;
+}
+
 .projectsCard {
   grid-area: projects;
   min-height: 200px !important;
@@ -68,7 +83,10 @@
 
 .hobbiesCard {
   grid-area: hobbies;
-  min-height: 200px !important;
+  min-height: 350px !important;
+  display: flex;
+  flex-direction: column;
+  height: 100% !important;
 }
 
 .achievementsCard {
@@ -78,7 +96,7 @@
 
 /* Card content container */
 .cardContent {
-  flex: 1;
+  flex: 1 1 auto;
   overflow-y: auto;
   padding: 0.5rem;
   height: 100% !important;
@@ -88,6 +106,43 @@
   transform: translateZ(0); /* Force hardware acceleration */
   backface-visibility: hidden;
   opacity: 1;
+  position: relative;
+  z-index: 1;
+}
+
+/* Scroll indicator styling */
+.scrollIndicator {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(to top, var(--bg-color) 60%, transparent);
+  border-radius: 0 0 var(--border-radius) var(--border-radius);
+  z-index: 5;
+  transition: all 0.3s ease;
+  opacity: 0.9;
+  pointer-events: auto;
+}
+
+/* Scroll indicator hover effect */
+.scrollIndicator:hover {
+  height: 32px;
+  opacity: 1;
+  background: linear-gradient(to top, var(--bg-color) 70%, transparent);
+}
+
+/* Ensure scroll indicators are only visible when needed */
+.noScroll .scrollIndicator {
+  display: none;
+}
+
+/* Additional styling for active sections with scroll */
+.card:global(.section-active) .scrollIndicator {
+  opacity: 1;
 }
 
 /* Active card styles for better content display */
@@ -95,16 +150,60 @@
   min-height: 300px !important;
   max-height: none !important;
   overflow-y: auto !important;
-  transition-delay: 0.1s;
+  transition-delay: 0.15s;
+  opacity: 1;
+  flex: 1 1 auto;
+  height: 100% !important;
 }
 
 /* Card focus transition */
 .card:global(.section-active) {
-  box-shadow: 0 25px 65px rgba(var(--accent-rgb, 249, 177, 122), 0.25), 0 15px 30px rgba(0, 0, 0, 0.15) !important;
-  transform: translateY(-8px) scale(1.03) !important;
-  border-color: rgba(var(--accent-rgb, 249, 177, 122), 0.3) !important;
+  box-shadow: 0 30px 70px rgba(var(--accent-rgb, 249, 177, 122), 0.3), 0 15px 35px rgba(0, 0, 0, 0.18) !important;
+  transform: translateY(-12px) scale(1.05) !important;
+  border-color: rgba(var(--accent-rgb, 249, 177, 122), 0.4) !important;
   transition: all 0.7s cubic-bezier(0.34, 1.56, 0.64, 1) !important;
   z-index: 10 !important;
+  border-radius: 16px !important;
+}
+
+/* Motion component container styling */
+.motionContainer {
+  overflow-y: auto;
+  flex: 1 1 0%;
+  min-height: 90%;
+  transition: 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+  padding-right: 0.5rem;
+  display: flex;
+  flex-direction: column;
+  transform: none;
+  backface-visibility: hidden;
+  opacity: 1;
+}
+
+/* Hobbies card and content styles - matches education styles */
+.hobbiesCard:global(.section-active) {
+  box-shadow: 0 30px 70px rgba(var(--accent-rgb, 249, 177, 122), 0.3), 0 15px 35px rgba(0, 0, 0, 0.18) !important;
+  transform: translateY(-12px) scale(1.05) !important;
+  border-color: rgba(var(--accent-rgb, 249, 177, 122), 0.4) !important;
+  min-height: 350px;
+}
+
+.hobbiesContent {
+  flex: 1;
+  overflow-y: auto;
+  padding-right: 0.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  min-height: 350px;
+}
+
+.hobbiesSection {
+  margin-top: 0.2rem;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  flex: 1 1 0%;
 }
 
 /* Skills content specific styling for focus mode */
@@ -116,6 +215,8 @@
   flex-direction: column;
   scrollbar-color: var(--accent) transparent;
   scrollbar-width: thin;
+  transform: translateZ(0); /* Force hardware acceleration */
+  backface-visibility: hidden;
 }
 
 /* Custom scrollbar for Webkit browsers */
@@ -139,9 +240,11 @@
 }
 
 .skillsCard:global(.section-active) .skillsContent {
-  min-height: 400px !important;
+  min-height: 420px !important;
   max-height: none !important;
   padding-bottom: 1rem;
+  opacity: 1;
+  transition-delay: 0.2s;
 }
 
 /* Media queries for responsive layout */
@@ -177,19 +280,48 @@
       "hobbies"
       "achievements";
     gap: 1rem;
+    padding: 0.5rem;
   }
   
   .card {
     padding: 1.2rem;
     margin-bottom: 1rem;
+    min-height: auto !important;
+    overflow: hidden !important;
+  }
+  
+  .card:global(.section-active) {
+    box-shadow: 0 15px 40px rgba(var(--accent-rgb, 249, 177, 122), 0.25), 0 10px 20px rgba(0, 0, 0, 0.15) !important;
+    transform: translateY(-6px) scale(1.02) !important;
+    border-color: rgba(var(--accent-rgb, 249, 177, 122), 0.4) !important;
+    transition: all 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) !important;
   }
   
   .aboutCard {
     min-height: 200px !important;
   }
 
-  .educationCard {
+  .skillsCard:global(.section-active) {
     min-height: 350px !important;
+  }
+
+  .educationCard {
+    min-height: 300px !important;
+  }
+  
+  .projectsCard:global(.section-active),
+  .hobbiesCard:global(.section-active),
+  .achievementsCard:global(.section-active) {
+    min-height: 300px !important;
+  }
+  
+  /* Adjust content for mobile */
+  .card:global(.section-active) .cardContent {
+    min-height: 250px !important;
+  }
+  
+  .skillsCard:global(.section-active) .skillsContent {
+    min-height: 320px !important;
   }
 }
 

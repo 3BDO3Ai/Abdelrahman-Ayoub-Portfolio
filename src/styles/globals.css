@@ -105,8 +105,29 @@ body {
   line-height: 1.6;
   letter-spacing: 0.01em;
   min-height: 100vh;
-  max-width: 100%;
-  overflow-x: hidden;
+}
+
+/* Classes to completely disable all animations and transitions for immediate navigation */
+html.no-smooth-scroll,
+body.no-smooth-scroll,
+.no-smooth-scroll * {
+  scroll-behavior: auto !important;
+  transition: none !important;
+  animation: none !important;
+  scroll-snap-type: none !important;
+}
+
+/* Force disable all animations when .force-jump class is present */
+.force-jump,
+.force-jump * {
+  scroll-behavior: auto !important;
+  transition-property: none !important;
+  animation: none !important;
+  -webkit-transition: none !important;
+  -moz-transition: none !important;
+  -o-transition: none !important;
+  -ms-transition: none !important;
+  transition: none !important;
 }
 
 a {
@@ -614,6 +635,22 @@ p, li {
 
 /* Responsive styles */
 @media (max-width: 768px) {
+  /* Add top padding to main content */
+  body {
+    padding-top: 20px;
+  }
+  
+  /* Enhanced active section styling for mobile */
+  .section.section-active,
+  .section.focused {
+    box-shadow: 0 25px 65px rgba(var(--accent-rgb, 249, 177, 122), 0.25), 0 15px 30px rgba(0, 0, 0, 0.15) !important;
+    transform: translateY(-8px) !important;
+    border-color: rgba(var(--accent-rgb, 249, 177, 122), 0.3) !important;
+    border-width: 2px !important;
+    transition: all 0.7s cubic-bezier(0.34, 1.56, 0.64, 1) !important;
+    z-index: 10 !important;
+    position: relative !important;
+  }
   main {
     grid-template-rows: auto 1fr;
     padding: 0.5rem;
@@ -974,6 +1011,9 @@ header.section {
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
   display: flex;
   flex-direction: column;
+  overflow-y: auto;
+  scrollbar-width: thin;
+  scrollbar-color: var(--accent) transparent;
 }
 
 .mobile-nav-menu-header {
@@ -1050,9 +1090,12 @@ header.section {
 }
 
 .mobile-nav-links {
+  margin-top: 1rem;
   display: flex;
   flex-direction: column;
-  gap: 0.5rem;
+  overflow-y: auto;
+  flex: 1;
+  padding-bottom: 16px;
 }
 
 .mobile-nav-link {

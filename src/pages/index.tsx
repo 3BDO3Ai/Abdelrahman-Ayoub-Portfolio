@@ -40,7 +40,13 @@ export default function Home({ toggleTheme = () => {}, isDarkTheme = true }: Hom
   
   // Function to handle section click
   const handleSectionClick = (id: SectionKey) => {
-    if (id === activeSection) return; // Do nothing if clicking the active section
+    if (id === activeSection) {
+      // If clicking the active section, reset to default view
+      setActiveSection('about');
+      setPreviousSection(id);
+      setPositions({ ...GRID_POSITIONS });
+      return;
+    }
     
     // Save previous active section
     setPreviousSection(activeSection);

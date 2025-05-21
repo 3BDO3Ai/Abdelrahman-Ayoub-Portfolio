@@ -111,6 +111,7 @@ const resumeData: ResumeData = {
         "C++",
         "PHP",
         "JavaScript",
+        "TypeScript",
         "HTML",
         "CSS"
       ],
@@ -123,6 +124,8 @@ const resumeData: ResumeData = {
         "PyTorch",
         "Scikit-learn",
         "Hugging Face Transformers",
+        "LangChain",
+        "OpenAI Integration",
         "NLTK",
         "SpaCy",
         "Neural Networks",
@@ -146,7 +149,10 @@ const resumeData: ResumeData = {
         "Microsoft Azure",
         "Git",
         "GitHub",
-        "Visual Studio Code"
+        "Visual Studio Code",
+        "Microservices Architecture",
+        "JWT Authentication",
+        "RESTful APIs"
       ],
     },
     {
@@ -165,7 +171,18 @@ const resumeData: ResumeData = {
         "Figma", 
         "Photoshop", 
         "Illustrator", 
-        "Power BI"
+        "Power BI",
+        "Tailwind CSS"
+      ],
+    },
+    {
+      category: "Web & Database Frameworks",
+      items: [
+        "Next.js",
+        "React",
+        "FastAPI",
+        "SQLAlchemy",
+        "PostgreSQL"
       ],
     },
   ],
@@ -241,6 +258,13 @@ const resumeData: ResumeData = {
     },
   ],
   projects: [
+    {
+      title: "Career Development Platform",
+      description:
+        "Developed a comprehensive career development and job search platform combining AI-powered tools with personalized guidance. Implemented intelligent resume parsing, AI career chatbot, and algorithm-driven job matching. Built with a microservices architecture for scalability and maintainability, featuring secure authentication and comprehensive profile management.",
+      technologies: ["Next.js", "TypeScript", "Tailwind CSS", "FastAPI", "SQLAlchemy", "PostgreSQL", "LangChain", "OpenAI", "JWT", "RESTful API"],
+      link: "",
+    },
     {
       title: "Arabic Speech Recognition in Egyptian Dialect",
       description:

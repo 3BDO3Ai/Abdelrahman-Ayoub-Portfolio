@@ -1,5 +1,5 @@
 import React from 'react';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 import resumeData from '../data/resume';
 import ContentSection from './ContentSection';
 import styles from '../styles/CardFix.module.css';
@@ -39,8 +39,21 @@ const Education: React.FC<EducationProps> = ({
       className={`${className} ${styles.educationCard}`}
       contentClassName={`${contentClassName} ${styles.educationContent}`}
     >
-        <div className={styles.educationSection} style={{ marginTop: '0.2rem', height: '100%' }}>
-          {resumeData.education.map((edu, index) => (
+        <motion.div 
+          className={styles.educationSection} 
+          style={{ 
+            marginTop: '0.2rem', 
+            height: '100%', 
+            display: 'flex', 
+            flexDirection: 'column',
+            flex: 1
+          }}
+          initial={{ opacity: 0.9 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.4 }}
+        >
+          <AnimatePresence mode="wait">
+            {resumeData.education.map((edu, index) => (
             <motion.div 
               key={index}
               initial={{ opacity: 0, y: 20 }}
@@ -53,7 +66,9 @@ const Education: React.FC<EducationProps> = ({
                 paddingLeft: '0.8rem', // Increased padding
                 display: 'flex',
                 flexDirection: 'column',
-                maxWidth: '100%'
+                maxWidth: '100%',
+                position: 'relative',
+                zIndex: 2
               }}
             >
               <h3 style={{ fontSize: isActive ? '1rem' : '0.85rem', marginBottom: '0.4rem', transition: 'all 0.3s ease' }}>{edu.degree}</h3>
@@ -68,7 +83,8 @@ const Education: React.FC<EducationProps> = ({
               </p>
             </motion.div>
           ))}
-        </div>
+          </AnimatePresence>
+        </motion.div>
     </ContentSection>
   );
 };

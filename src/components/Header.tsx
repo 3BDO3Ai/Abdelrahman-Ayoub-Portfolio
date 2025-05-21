@@ -289,7 +289,9 @@ const Header: React.FC<HeaderProps> = ({ toggleTheme, isDarkTheme }) => {
                     Open to freelance or part-time
                   </p>
                   <a 
-                    href={`mailto:${personalInfo.email}?subject=Job Opportunity`}
+                    href="https://wa.me/201024484974"
+                    target="_blank"
+                    rel="noopener noreferrer"
                     className={`button ${styles.hireButton}`}
                   >
                     Contact me

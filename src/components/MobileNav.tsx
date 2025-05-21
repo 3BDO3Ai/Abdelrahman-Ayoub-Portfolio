@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { FaBars, FaTimes, FaLinkedin, FaGithub, FaEnvelope, FaDownload, FaSun, FaMoon } from 'react-icons/fa';
 import resumeData from '../data/resume';
-import { mobileScrollToSection } from '../utils/scrollUtils';
 
 interface MobileNavProps {
   activeSection: string;
@@ -30,11 +29,51 @@ const MobileNav: React.FC<MobileNavProps> = ({
     // Update active section immediately to trigger UI changes
     handleSectionClick(id);
     
-    // Small delay to allow menu closing animation
+    // Apply section-active class to relevant section and remove from others
+    document.querySelectorAll('.section').forEach(section => {
+      const sectionId = section.getAttribute('id');
+      if (sectionId === id) {
+        section.classList.add('section-active', 'focused');
+      } else {
+        section.classList.remove('section-active', 'focused');
+      }
+    });
+    
+    // Add a class to the document to disable all animations
+    document.documentElement.classList.add('force-jump');
+    document.body.classList.add('force-jump');
+    
+    // Get the target section
+    const targetSection = document.getElementById(id);
+    if (targetSection) {
+      // Calculate direct position
+      const headerOffset = 85;
+      const position = targetSection.getBoundingClientRect().top + window.pageYOffset - headerOffset;
+      
+      // Use direct positioning with no animation
+      window.scrollTo(0, position);
+      
+      // Also set scrollTop directly as a fallback
+      document.documentElement.scrollTop = position;
+      document.body.scrollTop = position;
+      
+      // Focus the section for accessibility
+      targetSection.setAttribute('tabindex', '-1');
+      targetSection.focus({preventScroll: true});
+      
+      // Ensure it's really at the right position with a second attempt
+      setTimeout(() => {
+        window.scrollTo(0, position);
+        document.documentElement.scrollTop = position;
+        document.body.scrollTop = position;
+      }, 0);
+    }
+    
+    // Remove the animation-disabling class after a delay
     setTimeout(() => {
-      // Use our optimized mobile scrolling utility
-      mobileScrollToSection(id);
-    }, 300);
+      document.documentElement.classList.remove('force-jump');
+      document.body.classList.remove('force-jump');
+    }, 500);
   };
 
   const sections = [
@@ -90,7 +129,7 @@ const MobileNav: React.FC<MobileNavProps> = ({
       <AnimatePresence>
         {isOpen && (
           <motion.div 
-            className="mobile-nav-menu"
+            className={`mobile-nav-menu ${isOpen ? 'open' : ''}`}
             initial={{ opacity: 0, x: -300 }}
             animate={{ opacity: 1, x: 0 }}
             exit={{ opacity: 0, x: -300 }}

@@ -120,14 +120,12 @@ const Hobbies: React.FC<HobbiesProps> = ({
       initialPosition={initialPosition}
       targetPosition={targetPosition}
       onClick={isMobile ? undefined : onClick}
-      className={`${styles.card} ${styles.hobbiesCard}`}
-      contentClassName={`${styles.cardContent} ${styles.hobbiesContent}`}
     >
       <AnimatePresence mode="wait">
         <motion.div 
           key={`hobbies-content-${isActive ? 'active' : 'inactive'}`}
           ref={scrollContainerRef}
-          className={`${styles.motionContainer} ${!hasOverflow ? styles.noScroll : ''}`}
+          className={`${!hasOverflow ? styles.noScroll : ''}`}
           initial={{ opacity: 0.9, scale: 0.98 }}
           animate={{ opacity: 1, scale: 1 }}
           exit={{ opacity: 0.9, scale: 0.98 }}
@@ -137,14 +135,19 @@ const Hobbies: React.FC<HobbiesProps> = ({
             damping: 25
           }}
           style={{
+            overflowY: 'auto',
             height: '100%',
-            minHeight: isActive ? '350px' : 'auto',
-            position: 'relative',
-            paddingBottom: hasOverflow ? '28px' : '0',
-            width: '100%',
+            flex: '1 1 auto',
+            minHeight: isActive ? '100px' : 'auto',
+            maxHeight: '100%',
+            transition: '0.5s cubic-bezier(0.34, 1.56, 0.64, 1)',
+            paddingRight: '0.5rem',
             display: 'flex',
             flexDirection: 'column',
-            flex: '1 1 auto'
+            transform: 'translateZ(0)',
+            backfaceVisibility: 'hidden',
+            position: 'relative',
+            paddingBottom: hasOverflow ? '28px' : '0'
           }}
         >
           {/* Interests section */}
