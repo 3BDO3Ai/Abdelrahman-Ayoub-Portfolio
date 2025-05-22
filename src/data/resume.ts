@@ -85,7 +85,7 @@ export interface ResumeData {
 const resumeData: ResumeData = {
   personalInfo: {
     name: "Abdelrahman Ayoub",
-    title: "AI Engineer - Researcher | Web Developer | Graphic Designer",
+    title: "AI Engineer | Researcher | Web Developer | Graphic Designer",
     location: "Mansoura Qism 2, Mansoura, Egypt",
     email: "abdalrhmanayoub414@gmail.com",
     linkedin: "abdalrhman-ahmed3350",
@@ -113,7 +113,8 @@ const resumeData: ResumeData = {
         "JavaScript",
         "TypeScript",
         "HTML",
-        "CSS"
+        "CSS",
+        "Django"
       ],
     },
     {
@@ -125,22 +126,40 @@ const resumeData: ResumeData = {
         "Scikit-learn",
         "Hugging Face Transformers",
         "LangChain",
-        "OpenAI Integration",
+        "OpenAI/Azure AI Integration",
         "NLTK",
         "SpaCy",
         "Neural Networks",
-        "Computer Vision"
+        "Computer Vision",
+        "Emotion Recognition",
+        "Speech Recognition",
+        "Adaptive Learning Systems",
+        "Face Recognition",
+        "Real-time Processing",
+        "Performance Analytics",
+        "Document Understanding",
+        "Context-Aware AI",
+        "Question Answering Systems"
       ],
     },
     {
-      category: "Data Science",
+      category: "Data Science & Analytics",
       items: [
         "Pandas",
         "NumPy",
-        "Data Analysis",
+        "Scikit-learn",
+        "Data Mining",
+        "Statistical Analysis",
+        "Feature Engineering",
         "Data Visualization",
-        "NLP",
-        "Big Data Analytics"
+        "Power BI",
+        "Matplotlib",
+        "Seaborn",
+        "Jupyter Notebooks",
+        "SciPy",
+        "Regression Analysis",
+        "Classification Models",
+        "Clustering Analysis"
       ],
     },
     {
@@ -182,7 +201,12 @@ const resumeData: ResumeData = {
         "React",
         "FastAPI",
         "SQLAlchemy",
-        "PostgreSQL"
+        "PostgreSQL",
+        "Django 4.2",
+        "SQLite",
+        "WebSocket",
+        "RESTful APIs",
+        "Django Channels"
       ],
     },
   ],
@@ -258,6 +282,24 @@ const resumeData: ResumeData = {
     },
   ],
   projects: [
+    {
+      title: "Climate Change Impact Analysis - Agricultural Data Mining",
+      description: "Developed a comprehensive data mining project analyzing climate change's impact on agricultural productivity. Implemented multiple machine learning models (Random Forest, Gradient Boosting, Ridge/Lasso Regression) to predict crop yields and assess adaptation strategies. Created an extensive data pipeline for preprocessing agricultural and climate data, featuring advanced feature engineering and multi-stage analysis (classification, regression, clustering). Built interactive Power BI dashboards for visualizing insights. The project provides actionable insights for agricultural adaptation to climate change.",
+      technologies: ["Python", "Scikit-learn", "Pandas", "NumPy", "Power BI", "Jupyter", "Statistical Analysis", "Machine Learning", "Data Mining", "Data Visualization"],
+      link: ""
+    },
+    {
+      title: "EduRobot — AI-Powered Educational Platform",
+      description: "Developed a full-featured learning management system that leverages cutting-edge AI and computer-vision technologies. Key achievements: (1) Reduced manual attendance overhead by 90% through OpenCV-based facial recognition, (2) Improved student engagement by 30% via AI-driven tutoring and real-time collaboration, (3) Implemented context-aware Chat_AI with document understanding for curriculum-specific assistance, (4) Built comprehensive analytics dashboards for data-driven teaching. Features include: automated attendance tracking, NLP-powered content analysis, WebSocket-enabled real-time collaboration, role-based access control, and adaptive learning paths. Built with Django 4.2, custom NLP pipelines, and scalable data architecture.",
+      technologies: ["Django 4.2", "Python", "OpenCV", "WebSocket", "Custom NLP", "Face Recognition", "REST APIs", "Django Channels", "Document Processing", "SQLite/PostgreSQL", "Performance Analytics"],
+      link: ""
+    },
+    {
+      title: "Smile App - Smart Mobile Application for Autism Support",
+      description: "Led AI integration for an interactive mobile platform supporting children with Autism Spectrum Disorder (ASD) in Egypt. Developed and fine-tuned LLM-powered chatbot using GPT-4 via Azure, implemented emotion recognition and behavioral analysis modules, engineered voice and sound recognition features, and contributed to cloud architecture ensuring secure, scalable AI services deployment. Created personalized learning paths using adaptive algorithms tailored to each child's developmental needs.",
+      technologies: ["Azure", "GPT-4", "LLM", "Emotion Recognition", "Speech Recognition", "Adaptive Learning", "Cloud Architecture"],
+      link: ""
+    },
     {
       title: "Career Development Platform",
       description:
