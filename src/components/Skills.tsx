@@ -220,7 +220,7 @@ const Skills: React.FC<SkillsProps> = ({
                 style={{ marginBottom: '0.8rem' }}
               >
                 <h3 style={{ marginBottom: '0.3rem', color: 'var(--secondary)', fontSize: isActive || isMobile ? '0.95rem' : '0.8rem', transition: 'all 0.3s ease' }}>{skillCategory.category}</h3>
-                {skillCategory.category === 'Programming Languages' || skillCategory.category === 'Frameworks' ? (
+                {skillCategory.category === 'Frameworks' ? (
                   <div style={{ display: 'flex', flexDirection: 'column', width: '100%' }}>
                     {skillCategory.items.slice(0, isActive || isMobile ? undefined : 4).map((skill, skillIndex) => {
                       const proficiency = 95 - (skillIndex * 7);
