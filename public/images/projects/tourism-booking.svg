@@ -1,0 +1,17 @@
+<!-- Placeholder for Tourism Booking Platform project image -->
+<svg width="400" height="220" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="grad3" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#4facfe;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#00f2fe;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  <rect width="400" height="220" fill="url(#grad3)"/>
+  <text x="200" y="110" font-family="Arial, sans-serif" font-size="18" font-weight="bold" text-anchor="middle" fill="white">
+    Tourism Booking Platform
+  </text>
+  <path d="M 150 60 L 180 40 L 220 40 L 250 60 L 200 80 Z" fill="rgba(255,255,255,0.2)"/>
+  <circle cx="120" cy="150" r="15" fill="rgba(255,255,255,0.15)"/>
+  <circle cx="280" cy="140" r="12" fill="rgba(255,255,255,0.15)"/>
+  <rect x="160" y="140" width="80" height="30" fill="rgba(255,255,255,0.1)" rx="15"/>
+</svg>

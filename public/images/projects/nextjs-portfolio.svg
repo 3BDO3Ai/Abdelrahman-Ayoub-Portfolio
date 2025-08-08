@@ -1,0 +1,17 @@
+<!-- Placeholder for Next.js Portfolio project image -->
+<svg width="400" height="220" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="grad7" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#ffecd2;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#fcb69f;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  <rect width="400" height="220" fill="url(#grad7)"/>
+  <text x="200" y="110" font-family="Arial, sans-serif" font-size="18" font-weight="bold" text-anchor="middle" fill="rgba(0,0,0,0.7)">
+    Next.js Portfolio
+  </text>
+  <text x="200" y="140" font-family="Arial, sans-serif" font-size="12" text-anchor="middle" fill="rgba(0,0,0,0.5)">⚡ Fast &amp; Modern</text>
+  <rect x="160" y="60" width="80" height="30" fill="rgba(0,0,0,0.1)" rx="15"/>
+  <circle cx="120" cy="170" r="10" fill="rgba(0,0,0,0.1)"/>
+  <circle cx="280" cy="50" r="8" fill="rgba(0,0,0,0.1)"/>
+</svg>

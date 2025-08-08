@@ -1,0 +1,320 @@
+/* Portfolio Page Responsive Styles */
+
+.portfolioContainer {
+  padding: clamp(1rem, 4vw, 2rem) clamp(0.5rem, 2vw, 1rem);
+  max-width: 1400px;
+  margin: 0 auto;
+  min-height: 100vh;
+}
+
+.portfolioTitle {
+  font-size: clamp(2rem, 6vw, 3rem);
+  font-weight: 700;
+  margin-bottom: 1rem;
+  color: var(--text);
+  text-align: center;
+  line-height: 1.2;
+}
+
+.portfolioDescription {
+  font-size: clamp(0.9rem, 3vw, 1.2rem);
+  color: var(--text-light);
+  text-align: center;
+  margin-bottom: 3rem;
+  max-width: 800px;
+  margin: 0 auto 3rem auto;
+  line-height: 1.6;
+  padding: 0 1rem;
+}
+
+.projectsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(350px, 100%), 1fr));
+  gap: clamp(1rem, 3vw, 2rem);
+  padding: 0;
+}
+
+@media (max-width: 768px) {
+  .projectsGrid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+}
+
+.projectCard {
+  background: var(--card-background);
+  border-radius: 20px;
+  padding: 0;
+  border: 1px solid var(--border-color);
+  transition: all 0.3s ease;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+}
+
+.projectImageContainer {
+  width: 100%;
+  height: clamp(180px, 25vw, 280px);
+  position: relative;
+  overflow: hidden;
+  border-radius: 20px 20px 0 0;
+}
+
+.projectImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top center;
+  transition: transform 0.3s ease;
+}
+
+.projectContent {
+  padding: clamp(1rem, 4vw, 2rem);
+}
+
+.projectTitle {
+  font-size: clamp(1rem, 3.5vw, 1.4rem);
+  font-weight: 700;
+  margin-bottom: 1rem;
+  color: var(--text);
+  line-height: 1.3;
+  position: relative;
+  z-index: 1;
+}
+
+.projectDescription {
+  color: var(--text-light);
+  line-height: 1.7;
+  margin-bottom: 2rem;
+  font-size: clamp(0.8rem, 2.5vw, 0.95rem);
+  position: relative;
+  z-index: 1;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.technologiesContainer {
+  display: flex;
+  flex-wrap: wrap;
+  gap: clamp(0.3rem, 1vw, 0.5rem);
+  margin-bottom: 1rem;
+}
+
+.technologyBadge {
+  padding: clamp(0.25rem, 1vw, 0.4rem) clamp(0.5rem, 2vw, 0.8rem);
+  border-radius: 8px;
+  font-size: clamp(0.65rem, 1.8vw, 0.8rem);
+  font-weight: 600;
+}
+
+.galleryOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.95);
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+}
+
+.galleryImage {
+  max-width: 95vw;
+  max-height: 85vh;
+  object-fit: contain;
+  border-radius: 10px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+}
+
+.galleryButton {
+  background: rgba(255, 255, 255, 0.2);
+  color: white;
+  border: none;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(10px);
+}
+
+.galleryButton:hover {
+  background: rgba(255, 255, 255, 0.3);
+  transform: scale(1.1);
+}
+
+.closeButton {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  width: 45px;
+  height: 45px;
+  font-size: 1.1rem;
+  z-index: 1001;
+}
+
+.navButton {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 50px;
+  height: 50px;
+  font-size: 1.2rem;
+  z-index: 1001;
+}
+
+.navButtonLeft {
+  left: 1rem;
+}
+
+.navButtonRight {
+  right: 1rem;
+}
+
+.imageCounter {
+  position: absolute;
+  bottom: 1.5rem;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(255, 255, 255, 0.2);
+  color: white;
+  padding: 0.6rem 1.2rem;
+  border-radius: 20px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  backdrop-filter: blur(10px);
+}
+
+.projectCounter {
+  position: absolute;
+  bottom: 1rem;
+  right: 1rem;
+  background: rgba(0, 0, 0, 0.7);
+  color: white;
+  padding: 0.3rem 0.7rem;
+  border-radius: 12px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  z-index: 5;
+}
+
+.galleryHint {
+  text-align: center;
+  color: var(--text-light);
+  font-size: clamp(0.7rem, 1.8vw, 0.8rem);
+  font-style: italic;
+  margin-top: 1rem;
+  position: relative;
+  z-index: 1;
+}
+
+.cardNavButton {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(0, 0, 0, 0.7);
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  z-index: 10;
+  font-size: 0.8rem;
+}
+
+.cardNavButton:hover {
+  background: rgba(0, 0, 0, 0.9);
+  transform: translateY(-50%) scale(1.1);
+}
+
+.cardNavLeft {
+  left: 8px;
+}
+
+.cardNavRight {
+  right: 8px;
+}
+
+/* Dark theme adjustments */
+@media (prefers-color-scheme: dark) {
+  .projectCard {
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+  }
+  
+  .projectCard:hover {
+    box-shadow: 0 16px 40px rgba(0, 0, 0, 0.4);
+  }
+}
+
+/* Mobile specific adjustments */
+@media (max-width: 480px) {
+  .portfolioContainer {
+    padding: 1rem 0.5rem;
+  }
+  
+  .projectImageContainer {
+    height: 200px;
+  }
+  
+  .projectContent {
+    padding: 1.5rem;
+  }
+  
+  .navButton {
+    width: 40px;
+    height: 40px;
+    font-size: 1rem;
+  }
+  
+  .closeButton {
+    width: 40px;
+    height: 40px;
+    font-size: 1rem;
+    top: 0.5rem;
+    right: 0.5rem;
+  }
+  
+  .galleryOverlay {
+    padding: 0.5rem;
+  }
+  
+  .galleryImage {
+    max-width: 98vw;
+    max-height: 80vh;
+  }
+  
+  .imageCounter {
+    bottom: 1rem;
+    padding: 0.5rem 1rem;
+    font-size: 0.8rem;
+  }
+}
+
+/* Very small screens */
+@media (max-width: 320px) {
+  .projectsGrid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+  
+  .projectImageContainer {
+    height: 180px;
+  }
+  
+  .cardNavButton {
+    width: 28px;
+    height: 28px;
+    font-size: 0.7rem;
+  }
+}
