@@ -283,6 +283,56 @@ const resumeData: ResumeData = {
   ],
   projects: [
     {
+      title: "Arabic Speech Recognition in Egyptian Dialect",
+      description: "Advanced Arabic speech recognition system specifically engineered for Egyptian dialect recognition using state-of-the-art deep learning and NLP techniques. Trained sophisticated neural networks on extensive Egyptian Arabic audio datasets to achieve high-accuracy transcription of colloquial speech. Successfully fine-tuned speech-to-text algorithms to handle dialect-specific nuances, achieving remarkable performance in recognizing Egyptian expressions and conversational patterns.",
+      technologies: ["Python", "TensorFlow", "PyTorch", "NLP", "Deep Learning", "Speech Processing", "Audio Analysis", "Neural Networks"],
+    },
+    {
+      title: "AgriBot - Intelligent Agricultural Robot",
+      description: "Revolutionary agricultural robot system combining computer vision, IoT sensors, and machine learning for precision farming. Engineered real-time plant disease detection and soil condition analysis using advanced CNN models and embedded systems. Integrated hardware-software architecture processes image data and sensor readings to deliver actionable agricultural insights, empowering farmers with data-driven decision making for crop management.",
+      technologies: ["Computer Vision", "OpenCV", "Embedded Systems", "IoT", "Machine Learning", "Python", "Raspberry Pi", "Sensor Integration", "Real-time Processing"],
+    },
+    {
+      title: "Arabic Abstractive Summarization System",
+      description: "Co-led development of an Arabic abstractive summarization system based on the MT5 transformer, building a production-ready pipeline to generate concise, context-aware summaries for Arabic content. Implemented data preprocessing, training, evaluation, and deployment steps; tuned the model for robustness across conversational and formal Arabic. Delivered a reusable summarization module used in downstream applications.",
+      technologies: ["MT5", "Transformers", "NLP", "PyTorch", "Arabic NLP", "Deep Learning", "Model Optimization", "Deployment"],
+    },
+    {
+      title: "Smile App - GPT-4 Based Autism Support Chatbot",
+      description: "Innovative chatbot application designed to support children with autism through natural language interaction. Integrated GPT-4 with carefully crafted child-friendly interface and emotion-aware prompts to simplify communication. Developed comprehensive UI/UX prototyping and NLP tokenization systems, creating an accessible platform that enhances communication abilities for children on the autism spectrum.",
+      technologies: ["GPT-4", "OpenAI API", "UI/UX Design", "NLP", "Tokenization", "Microsoft Azure", "Child Psychology", "Accessibility"],
+    },
+    {
+      title: "EduRobot - Voice-Enabled Educational Assistant",
+      description: "Comprehensive educational robot system designed for classroom environments featuring voice commands, facial recognition, and automated attendance tracking. Developed full-stack solution including voice interface, computer vision modules, and cloud-connected dashboard. Successfully improved classroom engagement and introduced K-12 students to practical AI applications, demonstrating measurable educational impact.",
+      technologies: ["Python", "OpenCV", "Speech Recognition", "Django", "Computer Vision", "Face Recognition", "Full-Stack Development", "Cloud Integration"],
+    },
+    {
+      title: "E-Correspondence System for University",
+      description: "Enterprise-level communication platform streamlining correspondence across 12 university departments, achieving 40% reduction in email handling time. Implemented robust security features including user authentication and role-based access controls. Integrated seamlessly with existing university systems for automated notifications and comprehensive document tracking, significantly improving administrative efficiency.",
+      technologies: ["Full-Stack Development", "Authentication Systems", "Role-Based Access", "System Integration", "Database Management", "Security", "Automated Workflows"],
+    },
+    {
+      title: "Brain Tumor Detection Using CNN",
+      description: "Medical AI application utilizing Convolutional Neural Networks to detect brain tumors from MRI images with 90% accuracy. Applied advanced image preprocessing techniques including normalization, augmentation, and enhancement to optimize detection performance. Collaborated with multidisciplinary team to fine-tune the model and develop deployment strategies for clinical applications.",
+      technologies: ["CNN", "TensorFlow", "Medical Imaging", "Image Processing", "Computer Vision", "Python", "Medical AI", "Model Deployment"],
+    },
+    {
+      title: "Arabic Text Summarization Toolkit",
+      description: "Built a comparative summarization toolkit for Arabic that implements Word Frequency, K-Means clustering, and PageRank-based summarizers. Evaluated and benchmarked approaches on Arabic datasets, finding PageRank provided the best balance of compression and fidelity (0.562 compression ratio). Packaged evaluation scripts and reproducible pipelines so the toolkit can be integrated into production services or research experiments.",
+      technologies: ["Python", "Text Mining", "PageRank Algorithm", "K-Means Clustering", "Arabic NLP", "Evaluation & Benchmarking"],
+    },
+    {
+      title: "Intelligent Chatbot Development Portfolio",
+      description: "Extensive portfolio of specialized chatbots across multiple domains including healthcare, education, e-commerce, and customer service. Developed recommendation system-based chatbots, knowledge-based expert systems, and LLM API-integrated solutions serving diverse industries from fintech to retail. Each chatbot tailored to specific domain requirements, incorporating advanced NLP, machine learning, and conversational AI techniques for optimal user experience and business impact.",
+      technologies: ["LLM APIs", "Recommendation Systems", "Knowledge-Based Systems", "Conversational AI", "NLP", "Machine Learning", "API Integration", "Domain Expertise"],
+    },
+        {
+      title: "Abnormal Events Detection (Surveillance Cameras)",
+      description: "Developed an iterative weak/self-supervised framework for detecting abnormal events in surveillance camera footage. The system leverages self-supervised pretraining and weak labels to iteratively refine a classifier capable of recognizing anomalies with minimal hand-labeled data. Built end-to-end pipeline for data preprocessing, augmentations, iterative training loops, and evaluation tailored to real-world surveillance scenarios.",
+      technologies: ["Computer Vision", "Self-Supervised Learning", "Weak Supervision", "PyTorch", "OpenCV", "Anomaly Detection", "Video Processing", "Model Evaluation"],
+    },
+    {
       title: "Data Analysis & Machine Learning Platform",
       description: "Comprehensive data analysis and machine learning platform that transforms raw data into valuable insights. Built custom predictive models, statistical analysis tools, and interactive dashboards for various business domains including sales forecasting, customer behavior analysis, and survey data processing. Features automated data cleaning, visualization, and model deployment capabilities.",
       technologies: ["Python", "Pandas", "NumPy", "Scikit-learn", "XGBoost", "Matplotlib", "Seaborn", "FastAPI", "Jupyter", "SQL", "Excel"],
